@@ -13,26 +13,30 @@
     
     <style>
         :root {
-            /* Premium dark theme - warm charcoal with amber accents */
-            --bg-primary: #0f0e0d;
-            --bg-secondary: #1a1917;
-            --bg-card: #242220;
-            --border-subtle: #3a3835;
-            --border-accent: #5c564d;
+            /* Variant 2: Bold Terracotta (Colorful) */
+            --bg-primary: #fef7f0;
+            --bg-secondary: #fdf3e6;
+            --bg-card: #ffffff;
+            --border-subtle: #f0e6db;
+            --border-accent: #ea580c;
             
             /* Typography */
-            --text-primary: #faf9f7;
-            --text-secondary: #a8a29e;
+            --text-primary: #292524;
+            --text-secondary: #57534e;
             --text-muted: #78716c;
             
-            /* Accent - warm amber for trust + urgency */
-            --accent: #f59e0b;
-            --accent-hover: #fbbf24;
-            --accent-subtle: rgba(245, 158, 11, 0.15);
+            /* Accent - bright orange for high energy */
+            --accent: #ea580c;
+            --accent-hover: #f97316;
+            --accent-subtle: rgba(234, 88, 12, 0.12);
+            
+            /* Secondary - teal for contrast */
+            --secondary: #0d9488;
+            --secondary-subtle: rgba(13, 148, 136, 0.1);
             
             /* Trust colors */
-            --trust-blue: #3b82f6;
-            --success: #10b981;
+            --trust-blue: #0d9488;
+            --success: #059669;
         }
         
         * {
@@ -80,7 +84,7 @@
             border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 0;
-            background: rgba(15, 14, 13, 0.95);
+            background: rgba(254, 247, 240, 0.95);
             backdrop-filter: blur(12px);
             z-index: 100;
         }
@@ -108,14 +112,14 @@
             color: var(--accent);
             text-decoration: none;
             padding: 8px 16px;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
             border-radius: 6px;
             transition: all 0.2s ease;
         }
         
         .header-cta:hover {
             background: var(--accent);
-            color: var(--bg-primary);
+            color: #fef7f0;
         }
         
         /* Hero */
@@ -134,7 +138,7 @@
             width: 100%;
             max-width: 600px;
             height: 400px;
-            background: radial-gradient(ellipse at center top, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center top, rgba(234, 88, 12, 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
         
@@ -142,13 +146,13 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--accent-subtle);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: var(--secondary-subtle);
+            border: 1px solid rgba(13, 148, 136, 0.3);
             padding: 8px 16px;
             border-radius: 50px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--accent);
+            color: var(--secondary);
             margin-bottom: 24px;
         }
         
@@ -156,7 +160,7 @@
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--accent);
+            background: var(--secondary);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -209,24 +213,25 @@
         
         .btn-primary {
             background: var(--accent);
-            color: #0f0e0d;
+            color: #fef7f0;
         }
         
         .btn-primary:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+            box-shadow: 0 8px 24px rgba(234, 88, 12, 0.3);
         }
         
         .btn-secondary {
             background: transparent;
             color: var(--text-primary);
-            border: 1px solid var(--border-accent);
+            border: 2px solid var(--secondary);
         }
         
         .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            background: var(--bg-card);
+            background: var(--secondary);
+            color: #fef7f0;
+            border-color: var(--secondary);
         }
         
         /* Sections */
@@ -244,7 +249,7 @@
             font-weight: 600;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--accent);
+            color: var(--secondary);
             margin-bottom: 12px;
         }
         
@@ -291,8 +296,8 @@
         }
         
         .problem-highlight {
-            background: linear-gradient(135deg, var(--accent-subtle) 0%, rgba(245, 158, 11, 0.08) 100%);
-            border-left: 3px solid var(--accent);
+            background: linear-gradient(135deg, var(--accent-subtle) 0%, rgba(234, 88, 12, 0.05) 100%);
+            border-left: 4px solid var(--accent);
             padding: 24px;
             margin: 32px 0;
             border-radius: 0 8px 8px 0;
@@ -312,15 +317,16 @@
         
         .benefit-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
+            border: 2px solid var(--border-subtle);
             border-radius: 12px;
             padding: 28px;
             transition: all 0.2s ease;
         }
         
         .benefit-card:hover {
-            border-color: var(--border-accent);
+            border-color: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(234, 88, 12, 0.15);
         }
         
         .benefit-number {
@@ -329,8 +335,8 @@
             justify-content: center;
             width: 32px;
             height: 32px;
-            background: var(--accent-subtle);
-            color: var(--accent);
+            background: var(--accent);
+            color: #fef7f0;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 700;
@@ -379,12 +385,12 @@
             flex-shrink: 0;
             width: 24px;
             height: 24px;
-            background: var(--accent-subtle);
+            background: var(--secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
+            color: #fef7f0;
             font-size: 12px;
             margin-top: 2px;
         }
@@ -392,7 +398,7 @@
         /* Credibility */
         .credibility-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
+            border: 2px solid var(--secondary);
             border-radius: 16px;
             padding: 40px;
             max-width: 640px;
@@ -408,7 +414,7 @@
             font-size: 80px;
             font-family: 'Newsreader', serif;
             color: var(--accent);
-            opacity: 0.2;
+            opacity: 0.3;
             line-height: 1;
         }
         
@@ -416,6 +422,7 @@
             font-size: 22px;
             margin-bottom: 20px;
             position: relative;
+            color: var(--text-primary);
         }
         
         .credibility-card p {
@@ -437,7 +444,7 @@
         
         .offer-card {
             background: var(--bg-card);
-            border: 2px solid var(--accent);
+            border: 3px solid var(--accent);
             border-radius: 20px;
             padding: 48px 40px;
             text-align: center;
@@ -453,14 +460,14 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--accent-hover));
         }
         
         .offer-tag {
             display: inline-block;
-            background: var(--accent-subtle);
-            color: var(--accent);
+            background: var(--secondary-subtle);
+            color: var(--secondary);
             font-size: 12px;
             font-weight: 600;
             padding: 6px 12px;
@@ -520,8 +527,8 @@
         .guarantee-box {
             margin-top: 28px;
             padding: 20px;
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            background: var(--secondary-subtle);
+            border: 1px solid var(--secondary);
             border-radius: 12px;
         }
         
@@ -532,7 +539,7 @@
         }
         
         .guarantee-box strong {
-            color: var(--success);
+            color: var(--secondary);
         }
         
         /* Social Proof */
