@@ -4,886 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Proof Your Offer | The 90-Minute Workshop</title>
-    <meta name="description" content="The hands-on workshop where you redesign your offer AND your business around something AI literally cannot replace — and walk out with a plan to charge more.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-    
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            /* Variant 2: Bold Terracotta (Colorful) */
-            --bg-primary: #fef7f0;
-            --bg-secondary: #fdf3e6;
-            --bg-card: #ffffff;
-            --border-subtle: #f0e6db;
-            --border-accent: #ea580c;
-            
-            /* Typography */
-            --text-primary: #292524;
-            --text-secondary: #57534e;
+            --bg: #fef7f0;
+            --text: #292524;
             --text-muted: #78716c;
-            
-            /* Accent - bright orange for high energy */
             --accent: #ea580c;
-            --accent-hover: #f97316;
-            --accent-subtle: rgba(234, 88, 12, 0.12);
-            
-            /* Secondary - teal for contrast */
-            --secondary: #0d9488;
-            --secondary-subtle: rgba(13, 148, 136, 0.1);
-            
-            /* Trust colors */
-            --trust-blue: #0d9488;
-            --success: #059669;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-family: 'Instrument Sans', sans-serif;
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-        
-        .display-text {
-            font-family: 'Newsreader', Georgia, serif;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-        
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        /* Header */
-        header {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-subtle);
-            position: sticky;
-            top: 0;
-            background: rgba(254, 247, 240, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-        }
-        
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        .header-cta {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--accent);
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 2px solid var(--accent);
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-        
-        .header-cta:hover {
-            background: var(--accent);
-            color: #fef7f0;
-        }
-        
-        /* Hero */
-        .hero {
-            padding: 80px 0 64px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background: radial-gradient(ellipse at center top, rgba(234, 88, 12, 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--secondary-subtle);
-            border: 1px solid rgba(13, 148, 136, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--secondary);
-            margin-bottom: 24px;
-        }
-        
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .hero h1 {
-            font-size: clamp(36px, 7vw, 52px);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero .subhead {
-            font-size: clamp(18px, 3vw, 21px);
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 32px;
-            line-height: 1.55;
-        }
-        
-        .hero-cta-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 16px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: #fef7f0;
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(234, 88, 12, 0.3);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--secondary);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--secondary);
-            color: #fef7f0;
-            border-color: var(--secondary);
-        }
-        
-        /* Sections */
-        section {
-            padding: 64px 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 12px;
-        }
-        
-        .section-header h2 {
-            font-size: clamp(26px, 5vw, 36px);
-        }
-        
-        /* Problem Section */
-        .problem-section {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        
-        .problem-content {
-            max-width: 640px;
-            margin: 0 auto;
-        }
-        
-        .problem-content h2 {
-            font-size: clamp(24px, 4vw, 32px);
-            margin-bottom: 24px;
-        }
-        
-        .problem-text {
-            font-size: 17px;
-            color: var(--text-secondary);
-            line-height: 1.75;
-        }
-        
-        .problem-text p {
-            margin-bottom: 20px;
-        }
-        
-        .problem-text strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        
-        .problem-text em {
-            color: var(--accent);
-            font-style: normal;
-            font-weight: 600;
-        }
-        
-        .problem-highlight {
-            background: linear-gradient(135deg, var(--accent-subtle) 0%, rgba(234, 88, 12, 0.05) 100%);
-            border-left: 4px solid var(--accent);
-            padding: 24px;
-            margin: 32px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .problem-highlight p {
-            font-size: 18px;
-            color: var(--text-primary);
-            margin: 0;
-        }
-        
-        /* Benefits */
-        .benefits-grid {
-            display: grid;
-            gap: 20px;
-        }
-        
-        .benefit-card {
-            background: var(--bg-card);
-            border: 2px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 28px;
-            transition: all 0.2s ease;
-        }
-        
-        .benefit-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(234, 88, 12, 0.15);
-        }
-        
-        .benefit-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            color: #fef7f0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .benefit-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        
-        .benefit-card p {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-        
-        /* ICP Section */
-        .icp-section {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        
-        .icp-list {
-            list-style: none;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .icp-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-subtle);
-            font-size: 17px;
-            color: var(--text-secondary);
-        }
-        
-        .icp-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .icp-check {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            background: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fef7f0;
-            font-size: 12px;
-            margin-top: 2px;
-        }
-        
-        /* Credibility */
-        .credibility-card {
-            background: var(--bg-card);
-            border: 2px solid var(--secondary);
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 640px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .credibility-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 32px;
-            font-size: 80px;
-            font-family: 'Newsreader', serif;
-            color: var(--accent);
-            opacity: 0.3;
-            line-height: 1;
-        }
-        
-        .credibility-card h3 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            position: relative;
-            color: var(--text-primary);
-        }
-        
-        .credibility-card p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 16px;
-            line-height: 1.7;
-            position: relative;
-        }
-        
-        .credibility-card p:last-of-type {
-            margin-bottom: 0;
-        }
-        
-        /* Offer Section */
-        .offer-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        .offer-card {
-            background: var(--bg-card);
-            border: 3px solid var(--accent);
-            border-radius: 20px;
-            padding: 48px 40px;
-            text-align: center;
-            max-width: 540px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .offer-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--accent-hover));
-        }
-        
-        .offer-tag {
-            display: inline-block;
-            background: var(--secondary-subtle);
-            color: var(--secondary);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 4px;
-            margin-bottom: 16px;
-            letter-spacing: 0.05em;
-        }
-        
-        .offer-card h2 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        
-        .offer-subtitle {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 24px;
-        }
-        
-        .price-display {
-            margin: 24px 0;
-        }
-        
-        .price-original {
-            font-size: 18px;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            margin-bottom: 4px;
-        }
-        
-        .price-current {
-            font-size: 56px;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: -0.02em;
-        }
-        
-        .price-current span {
-            font-size: 20px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        .offer-includes {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 28px;
-        }
-        
-        .offer-cta {
-            width: 100%;
-            padding: 20px 32px;
-            font-size: 18px;
-        }
-        
-        /* Guarantee */
-        .guarantee-box {
-            margin-top: 28px;
-            padding: 20px;
-            background: var(--secondary-subtle);
-            border: 1px solid var(--secondary);
-            border-radius: 12px;
-        }
-        
-        .guarantee-box p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin: 0;
-        }
-        
-        .guarantee-box strong {
-            color: var(--secondary);
-        }
-        
-        /* Social Proof */
-        .social-proof {
-            padding: 48px 0;
-            border-top: 1px solid var(--border-subtle);
-        }
-        
-        .proof-items {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-        
-        .proof-item {
-            text-align: center;
-        }
-        
-        .proof-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-        }
-        
-        .proof-label {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid var(--border-subtle);
-        }
-        
-        footer p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-        
-        /* Mobile */
-        @media (max-width: 640px) {
-            .hero {
-                padding: 56px 0 48px;
-            }
-            
-            .hero h1 {
-                margin-bottom: 20px;
-            }
-            
-            section {
-                padding: 48px 0;
-            }
-            
-            .offer-card {
-                padding: 36px 24px;
-            }
-            
-            .price-current {
-                font-size: 48px;
-            }
-            
-            .credibility-card {
-                padding: 32px 24px;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .hero-cta-group {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .proof-items {
-                gap: 32px;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero h1, .hero .subhead, .hero-cta-group, .section-header, .benefit-card, .icp-list li {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .hero h1 { animation-delay: 0.1s; }
-        .hero .subhead { animation-delay: 0.2s; }
-        .hero-cta-group { animation-delay: 0.3s; }
-        
-        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
-        .benefit-card:nth-child(2) { animation-delay: 0.2s; }
-        .benefit-card:nth-child(3) { animation-delay: 0.3s; }
+            --accent-hover: #c2410c;
+            --bg-card: #ffffff;
+            --border: #e7e5e4;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 24px 0; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 18px; }
+        .btn { display: inline-block; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .btn:hover { background: var(--accent-hover); }
+        section { padding: 80px 0; }
+        h1 { font-size: 44px; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .subhead { font-size: 22px; color: var(--text-muted); max-width: 540px; margin-bottom: 32px; }
+        .hero-badge { display: inline-block; background: var(--accent); color: white; padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 16px; }
+        h2 { font-size: 28px; margin-bottom: 16px; }
+        h3 { font-size: 20px; margin-bottom: 12px; }
+        .problem-text { font-size: 18px; }
+        .problem-text p { margin-bottom: 20px; }
+        .problem-text strong { color: var(--text); }
+        .benefit-grid { display: grid; gap: 16px; margin-top: 32px; }
+        .benefit { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .benefit h3 { color: var(--accent); font-size: 18px; }
+        .icp-list { list-style: none; }
+        .icp-list li { padding: 16px 0; border-bottom: 1px solid var(--border); padding-left: 24px; position: relative; }
+        .icp-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+        .credibility-card h3 { font-size: 24px; margin-bottom: 16px; }
+        .offer-card { background: var(--bg-card); border: 2px solid var(--accent); border-radius: 16px; padding: 40px 32px; text-align: center; }
+        .offer-tag { display: inline-block; background: var(--accent); color: white; padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .offer-card h2 { font-size: 32px; }
+        .price-original { font-size: 20px; color: var(--text-muted); text-decoration: line-through; margin-bottom: 8px; }
+        .price-current { font-size: 64px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+        .offer-includes { color: var(--text-muted); margin-bottom: 24px; }
+        .offer-cta { font-size: 18px; padding: 16px 48px; display: block; }
+        .guarantee-box { background: rgba(0,0,0,0.03); border-radius: 8px; padding: 16px; margin-top: 20px; font-size: 15px; }
+        .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+        .testimonial p { font-style: italic; margin-bottom: 12px; }
+        .testimonial cite { font-weight: 600; font-style: normal; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+        .faq-item h3 { font-size: 17px; margin-bottom: 8px; }
+        .faq-item p { color: var(--text-muted); font-size: 15px; }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">Matt<span>.</span></div>
-            <a href="#offer" class="header-cta">Save Your Spot</a>
+            <div class="logo">AI-Proof Your Offer</div>
+            <a href="#offer" class="btn">Save Your Spot</a>
         </div>
     </header>
-    
-    <main>
-        <!-- Hero -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-badge">
-                    <span class="badge-urgent">🔥 Next Cohort: April 5th — Only 12 Seats Left</span>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">90-Minute Live Workshop</div>
+            <h1>In 90 Minutes, You'll Have an Offer AI Can't Touch — That Clients Will Pay 3x More For.</h1>
+            <p class="subhead">The 90-minute workshop where you redesign your offer around something AI literally cannot replace — and walk out with words that justify 3x pricing.</p>
+            <a href="#offer" class="btn">Secure Your Spot — Only 12 Left</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>The problem isn't AI. It's your offer.</h2>
+            <div class="problem-text">
+                <p>AI can write your emails. AI can design your logos. AI can build your landing pages.</p>
+                <p>So when a client looks you in the eye and asks "Why can't we just use ChatGPT for this?" — what do you say?</p>
+                <p>If you hesitated, you're already losing.</p>
+                <p>But here's the real problem: <strong>It's never been harder to be in digital business.</strong> Client perception of what marketing takes has shifted. Pure execution gets replaced. Strategy doesn't.</p>
+                <p>You're not just worried about one project. You're watching your entire business model get commoditized in slow motion.</p>
+                <p>The question isn't "How do I compete with AI?" It's "What am I actually selling?"</p>
+                <p><strong>When the output can be replicated — what are YOU selling?</strong></p>
+                <p>The offers that survive: <strong>judgment, taste, context, relationship, leadership.</strong></p>
+                <p>Everything else is commoditizing. Fast.</p>
+            </div>
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="#offer" class="btn">Secure Your Spot — Only 12 Left</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>What you'll leave with</h2>
+            <div class="benefit-grid">
+                <div class="benefit">
+                    <h3>1. Your offer rewritten</h3>
+                    <p>Not "marketing help." Something specific that commands premium pricing — and $15k+ projects.</p>
                 </div>
-                <h1>Stop Watching AI Eat Your Business. In 90 Minutes, You'll Have an Offer AI Can't Touch — That Clients Will Pay 3x More For.</h1>
-                <p class="subhead">The 90-minute workshop where you redesign your offer around something AI literally cannot replace — and walk out with words that justify 3x pricing.</p>
-                <div class="hero-cta-group">
-                    <a href="#offer" class="btn btn-primary">Charge 3x More — $97</a>
-                    <a href="#benefits" class="btn btn-secondary">See What's Included</a>
+                <div class="benefit">
+                    <h3>2. The AI-Proof Framework</h3>
+                    <p>A 3-question test to validate any offer in 10 minutes. You'll know what to change, immediately.</p>
+                </div>
+                <div class="benefit">
+                    <h3>3. A 90-day execution roadmap</h3>
+                    <p>Not theory. Steps to command 3x your previous rates — starting tomorrow.</p>
                 </div>
             </div>
-        </section>
-        
-        <!-- Social Proof -->
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="#offer" class="btn">Get These Results — $97</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <div class="container">
-            <div class="proof-items">
-                <div class="proof-item">
-                    <div class="proof-number">8-fig</div>
-                    <div class="proof-label">Agency Sold</div>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-number">500+</div>
-                    <div class="proof-label">Founders Helped</div>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-number">$2.1M</div>
-                    <div class="proof-label">Revenue Protected</div>
+            <h2>This is for you if...</h2>
+            <ul class="icp-list">
+                <li>You've watched a client ask "Why can't we just use ChatGPT?" — and felt that pit in your stomach</li>
+                <li>You're making $100k+ but wondering how long before AI makes your pricing untenable</li>
+                <li>You've realized your "marketing help" or "design services" offer doesn't hold water anymore</li>
+                <li>You're tired of discounting, competing on cost, and explaining why you're worth more than a subscription</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>I've been exactly where you are</h2>
+            <div class="credibility-card">
+                <h3>I built and sold an 8-figure agency.</h3>
+                <p>Then watched AI go from "interesting" to "my best client just asked why we're not just using ChatGPT."</p>
+                <p>I felt that panic. The slow realization that my offer — which had worked for years — was starting to feel shaky.</p>
+                <p>So I rebuilt. From scratch. Around what AI literally cannot do.</p>
+                <p>Now I help founders do the same — stop competing with machines, start charging for judgment.</p>
+                <p>This isn't theory. It's what I actually did.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>What founders are saying</h2>
+            <div class="testimonial">
+                <p>"I had a client literally ask me to justify my rates against ChatGPT. This workshop helped me rebuild my offer so I never have to have that conversation again. Booked a $15k project two weeks later."</p>
+                <cite>— Sarah K., Brand Strategist</cite>
+            </div>
+            <div class="testimonial">
+                <p>"Went from 'I do marketing' to 'I help series A founders build positioning that commands 3x fees.' The specificity changed everything."</p>
+                <cite>— Marcus T., Marketing Consultant</cite>
+            </div>
+            <div class="testimonial">
+                <p>"The framework itself is worth 10x the price. I've used it three times already to reposition existing clients."</p>
+                <cite>— James L., Design Agency Owner</cite>
+            </div>
+        </div>
+    </section>
+
+    <section id="offer">
+        <div class="container">
+            <div class="offer-card">
+                <div class="offer-tag">🔥 April 5th — Only 12 Seats Left</div>
+                <h2>AI-Proof Your Offer</h2>
+                <p class="offer-includes">90-minute hands-on workshop</p>
+                <div class="price-original">Value: $497</div>
+                <div class="price-current">$97</div>
+                <p class="offer-includes">One payment. Lifetime access to recordings.</p>
+                <a href="#" class="btn offer-cta">AI-Proof My Offer — $97</a>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px;">⚡ 8 people have registered in the last 24 hours</p>
+                <div class="guarantee-box">
+                    <p><strong>🎯 Guarantee:</strong> You leave with your offer rewritten. Not satisfied? Full refund. No questions asked.</p>
                 </div>
             </div>
         </div>
-        
-        <!-- Problem -->
-        <section class="problem-section">
-            <div class="container">
-                <div class="problem-content">
-                    <div class="section-label">The Problem</div>
-                    <h2>The problem isn't AI. It's your offer.</h2>
-                    <div class="problem-text">
-                        <p>AI can write your emails. AI can design your logos. AI can build your landing pages.</p>
-                        
-                        <p>So when a client looks you in the eye and asks <em>"Why can't we just use ChatGPT for this?"</em> — what do you say?</p>
-                        
-                        <p>If you hesitated, you're already losing.</p>
-                        
-                        <p>But here's the real problem: <strong>It's never been harder to be in digital business.</strong> Client perception of what marketing takes has shifted. Pure execution gets replaced. Strategy doesn't.</p>
-                        
-                        <p>You're not just worried about one project. You're watching your entire business model get commoditized in slow motion.</p>
-                        
-                        <div class="problem-highlight">
-                            <p><strong>When the output can be replicated — what are YOU selling?</strong></p>
-                        </div>
-                        
-                        <p>The offers that survive: <strong>judgment, taste, context, relationship, leadership.</strong></p>
-                        
-                        <p>Everything else is commoditizing. Fast.</p>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 32px;">
-                        <a href="#offer" class="btn btn-primary">Start Charging 3x — Only 12 Left</a>
-                    </div>
-                </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <h3>What if I can't make the live workshop?</h3>
+                <p>All registrants get lifetime access to recordings. Watch on your own time.</p>
             </div>
-        </section>
-        
-        <!-- Benefits -->
-        <section id="benefits">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">The Transformation</div>
-                    <h2>What you'll leave with</h2>
-                </div>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-number">1</div>
-                        <h3>Your offer rewritten</h3>
-                        <p>Not "marketing help." Something specific that AI can't replicate. You'll have words that justify <strong>$15k+ projects</strong>.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-number">2</div>
-                        <h3>The AI-Proof Framework</h3>
-                        <p>A 3-question test to validate any offer in 10 minutes. Used by 500+ founders to command <strong>3x their previous rates</strong>.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-number">3</div>
-                        <h3>A 90-day execution roadmap</h3>
-                        <p>Not theory. Steps you can start tomorrow. A proven path to <strong>$2.1M+ in protected revenue</strong>.</p>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="#offer" class="btn btn-primary">Get These Results — Charge 3x More</a>
-                </div>
+            <div class="faq-item">
+                <h3>Who is this NOT for?</h3>
+                <p>If you're looking for "AI tips" or want to automate more work, this isn't it. This is for founders ready to change their business model.</p>
             </div>
-        </section>
-        
-        <!-- ICP -->
-        <section class="icp-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Is This For You?</div>
-                    <h2>This is for you if...</h2>
-                </div>
-                <ul class="icp-list">
-                    <li>
-                        <span class="icp-check">✓</span>
-                        <span>You've watched a client ask "Why can't we just use ChatGPT?" — and felt that pit in your stomach</span>
-                    </li>
-                    <li>
-                        <span class="icp-check">✓</span>
-                        <span>You're making $100k+ but wondering how long before AI makes your pricing untenable</span>
-                    </li>
-                    <li>
-                        <span class="icp-check">✓</span>
-                        <span>You've realized your "marketing help" or "design services" offer doesn't hold water anymore</span>
-                    </li>
-                    <li>
-                        <span class="icp-check">✓</span>
-                        <span>You're tired of discounting, competing on cost, and explaining why you're worth more than a subscription</span>
-                    </li>
-                </ul>
+            <div class="faq-item">
+                <h3>What if I don't like it?</h3>
+                <p>Full refund, no questions asked. You're protected.</p>
             </div>
-        </section>
-        
-        <!-- Testimonials -->
-        <section style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Real Results</div>
-                    <h2>What founders are saying</h2>
-                </div>
-                <div style="display: grid; gap: 24px; max-width: 800px; margin: 0 auto;">
-                    <div style="background: var(--bg-card); border: 2px solid var(--border-subtle); border-radius: 12px; padding: 28px;">
-                        <p style="font-size: 17px; color: var(--text-primary); margin-bottom: 16px; line-height: 1.7; font-style: italic;">"I had a client literally ask me to justify my rates against ChatGPT. This workshop helped me rebuild my offer so I never have to have that conversation again. Booked a $15k project two weeks later."</p>
-                        <p style="font-weight: 600; color: var(--text-primary);">— Sarah K., Brand Strategist</p>
-                    </div>
-                    <div style="background: var(--bg-card); border: 2px solid var(--border-subtle); border-radius: 12px; padding: 28px;">
-                        <p style="font-size: 17px; color: var(--text-primary); margin-bottom: 16px; line-height: 1.7; font-style: italic;">"Went from 'I do marketing' to 'I help series A founders build positioning that commands 3x fees.' The specificity changed everything."</p>
-                        <p style="font-weight: 600; color: var(--text-primary);">— Marcus T., Marketing Consultant</p>
-                    </div>
-                    <div style="background: var(--bg-card); border: 2px solid var(--border-subtle); border-radius: 12px; padding: 28px;">
-                        <p style="font-size: 17px; color: var(--text-primary); margin-bottom: 16px; line-height: 1.7; font-style: italic;">"The framework itself is worth 10x the price. I've used it three times already to reposition existing clients. This should be required for any creative professional."</p>
-                        <p style="font-weight: 600; color: var(--text-primary);">— James L., Design Agency Owner</p>
-                    </div>
-                </div>
+            <div class="faq-item">
+                <h3>Is this really 90 minutes?</h3>
+                <p>Yes. It's hands-on. You'll be working on your offer, not watching slides. Bring a problem to solve.</p>
             </div>
-        </section>
-        
-        <!-- Credibility -->
-        <section>
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Why Listen To Me?</div>
-                    <h2>I've been exactly where you are</h2>
-                </div>
-                <div class="credibility-card">
-                    <h3>I built and sold an 8-figure agency.</h3>
-                    <p>Then watched AI go from "interesting" to "my best client just asked why we're not just using ChatGPT."</p>
-                    <p>I felt that panic. The slow realization that my offer — which had worked for years — was starting to feel shaky.</p>
-                    <p>So I rebuilt. From scratch. Around what AI literally cannot do.</p>
-                    <p>Now I help founders do the same — stop competing with machines, start charging for judgment.</p>
-                    <p>This isn't theory. It's what I actually did.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- FAQ -->
-        <section style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Questions?</div>
-                    <h2>FAQ</h2>
-                </div>
-                <div style="max-width: 640px; margin: 0 auto;">
-                    <div style="border-bottom: 1px solid var(--border-subtle); padding: 20px 0;">
-                        <h3 style="font-size: 17px; margin-bottom: 8px; color: var(--text-primary);">What if I can't make the live workshop?</h3>
-                        <p style="color: var(--text-secondary); font-size: 15px;">All registrants get lifetime access to recordings. Watch on your own time.</p>
-                    </div>
-                    <div style="border-bottom: 1px solid var(--border-subtle); padding: 20px 0;">
-                        <h3 style="font-size: 17px; margin-bottom: 8px; color: var(--text-primary);">Who is this NOT for?</h3>
-                        <p style="color: var(--text-secondary); font-size: 15px;">If you're looking for "AI tips" or want to automate more work, this isn't it. This is for founders ready to change their business model.</p>
-                    </div>
-                    <div style="border-bottom: 1px solid var(--border-subtle); padding: 20px 0;">
-                        <h3 style="font-size: 17px; margin-bottom: 8px; color: var(--text-primary);">What if I don't like it?</h3>
-                        <p style="color: var(--text-secondary); font-size: 15px;">Full refund, no questions asked. You're protected.</p>
-                    </div>
-                    <div style="padding: 20px 0;">
-                        <h3 style="font-size: 17px; margin-bottom: 8px; color: var(--text-primary);">Is this really 90 minutes?</h3>
-                        <p style="color: var(--text-secondary); font-size: 15px;">Yes. It's hands-on. You'll be working on your offer, not watching slides. Bring a problem to solve.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Offer -->
-        <section id="offer" class="offer-section">
-            <div class="container">
-                <div class="offer-card">
-                    <div class="offer-tag">🔥 April 5th — Only 12 Seats Left</div>
-                    <h2>AI-Proof Your Offer</h2>
-                    <p class="offer-subtitle">90-minute hands-on workshop</p>
-                    
-                    <div class="price-display">
-                        <div class="price-original">Value: $497</div>
-                        <div class="price-current">$97</div>
-                    </div>
-                    
-                    <p class="offer-includes">One payment. Lifetime access to recordings.</p>
-                    
-                    <a href="#" class="btn btn-primary offer-cta">Charge 3x More — $97</a>
-                    
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px;">⚡ 8 people have registered in the last 24 hours</p>
-                    
-                    <div class="guarantee-box">
-                        <p><strong>🎯 Guarantee:</strong> You leave with your offer rewritten. Not satisfied? Full refund. No questions asked.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <footer>
-            <div class="container">
-                <p>© 2026 Matt Rud. Built for founders ready to compete on judgment, not tasks.</p>
-            </div>
-        </footer>
-    </main>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Matt Rud. Built for founders ready to compete on judgment, not tasks.</p>
+        </div>
+    </footer>
 </body>
 </html>
