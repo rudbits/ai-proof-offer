@@ -3,131 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Proof Your Offer | Workshop Workbook</title>
+    <title>AI-Proof Your Offer</title>
     <style>
-        :root {
-            --terracotta: #C2410C;
-            --terracotta-dark: #9A3412;
-            --cream: #FFFBEB;
-            --charcoal: #1C1917;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
             line-height: 1.6;
-            color: var(--charcoal);
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            min-height: 100vh;
+            color: #1a1a1a;
+            background: #fff;
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+
+        .cover {
+            min-height: 70vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            padding: 20px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 48px;
-            max-width: 520px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 48px 0;
         }
-        
-        .badge {
-            display: inline-block;
-            background: var(--cream);
-            color: var(--terracotta);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
+
+        .cover h1 {
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .cover p {
+            color: #666;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 56px 0;
+        }
+
+        h2 {
+            font-size: 13px;
+            font-weight: 500;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .about {
+            margin-bottom: 48px;
+        }
+
+        .about p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .exercise {
+            margin-bottom: 48px;
+        }
+
+        .exercise h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .exercise-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 24px;
+        }
+
+        .dotted-line {
+            border: none;
+            border-bottom: 1px dotted #ccc;
+            width: 100%;
+            margin: 0;
+            padding: 8px 0;
+            background: transparent;
+        }
+
+        .dotted-line:focus {
+            outline: none;
+            border-bottom-color: #666;
+        }
+
+        .framework {
+            margin-bottom: 48px;
+        }
+
+        .framework-q {
+            margin-bottom: 24px;
+        }
+
+        .framework-q p {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .roadmap {
+            margin-bottom: 48px;
+        }
+
+        .roadmap h3 {
             margin-bottom: 20px;
         }
-        
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--charcoal);
-            margin-bottom: 12px;
-            line-height: 1.1;
-        }
-        
-        .subtitle {
-            font-size: 18px;
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            font-size: 14px;
             color: #666;
-            margin-bottom: 32px;
         }
-        
-        .framework {
-            display: inline-block;
-            background: var(--terracotta);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 32px;
+
+        .check-box {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin-right: 12px;
         }
-        
-        .download-btn {
-            display: inline-block;
-            background: var(--charcoal);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            margin: 8px;
-        }
-        
-        .download-btn:hover {
-            background: var(--terracotta);
-            transform: translateY(-2px);
-        }
-        
-        .download-btn.secondary {
-            background: white;
-            color: var(--charcoal);
-            border: 2px solid var(--charcoal);
-        }
-        
-        .download-btn.secondary:hover {
-            background: var(--charcoal);
-            color: white;
-        }
-        
-        .footer {
-            margin-top: 32px;
-            font-size: 13px;
-            color: #999;
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+            body {
+                max-width: 100%;
+                padding: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="badge">Free Download</div>
-        <h1>AI-Proof<br>Your Offer</h1>
-        <p class="subtitle">A hands-on workbook for creative entrepreneurs who want to build a business around judgment—not tasks.</p>
-        <div class="framework">Judgment Over Execution</div>
+
+    <!-- COVER -->
+    <div class="cover">
+        <h1>AI-Proof Your Offer</h1>
+        <p>Build a business around judgment</p>
+    </div>
+
+    <hr>
+
+    <!-- ABOUT -->
+    <div class="about">
+        <h2>About</h2>
+        <p>Move from execution to judgment. Build an offer clients choose—not because AI can't do it, but because your taste is irreplaceable.</p>
+    </div>
+
+    <!-- EXERCISE 1 -->
+    <div class="exercise">
+        <h2>Exercise 1</h2>
+        <h3>Value Chain Map</h3>
+        <h4>Where does your value sit?</h4>
+        <p style="font-size: 14px; color: #666; margin-bottom: 24px;">Execution (writing, coding) → Strategy (planning) → Judgment (choosing)</p>
         
-        <br>
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+    </div>
+
+    <!-- EXERCISE 2 -->
+    <div class="exercise">
+        <h2>Exercise 2</h2>
+        <h3>Find Your Niche</h3>
+        <h4>Who do you help and what do they get?</h4>
         
-        <a href="workbook.pdf" class="download-btn" download>📥 Download PDF</a>
-        <a href="workshop-workbook.html" class="download-btn secondary">👁️ View Online</a>
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+    </div>
+
+    <!-- EXERCISE 3 -->
+    <div class="exercise">
+        <h2>Exercise 3</h2>
+        <h3>Redesign Your Offer</h3>
+        <h4>Shift from what you do to what they get</h4>
         
-        <div class="footer">
-            <p>© 2026 Matt Rud</p>
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+        <input type="text" class="dotted-line">
+    </div>
+
+    <hr>
+
+    <!-- FRAMEWORK -->
+    <div class="framework">
+        <h2>Framework</h2>
+        
+        <div class="framework-q">
+            <p>1. Where does your value sit?</p>
+            <input type="text" class="dotted-line">
+        </div>
+        
+        <div class="framework-q">
+            <p>2. Is your niche specific?</p>
+            <input type="text" class="dotted-line">
+        </div>
+        
+        <div class="framework-q">
+            <p>3. What's your unique mechanism?</p>
+            <input type="text" class="dotted-line">
         </div>
     </div>
+
+    <hr>
+
+    <!-- ROADMAP -->
+    <div class="roadmap">
+        <h2>90-Day Roadmap</h2>
+        
+        <h3>Month 1</h3>
+        <div class="check-item"><div class="check-box"></div>Finalize your AI-proof offer</div>
+        <div class="check-item"><div class="check-box"></div>Test with 1-2 pilot clients</div>
+        <div class="check-item"><div class="check-box"></div>Document your mechanism</div>
+
+        <h3 style="margin-top: 32px;">Month 2</h3>
+        <div class="check-item"><div class="check-box"></div>Raise price to full rate</div>
+        <div class="check-item"><div class="check-box"></div>Sign 3 new clients</div>
+        <div class="check-item"><div class="check-box"></div>Collect testimonials</div>
+
+        <h3 style="margin-top: 32px;">Month 3</h3>
+        <div class="check-item"><div class="check-box"></div>Evaluate: is it working?</div>
+        <div class="check-item"><div class="check-box"></div>Raise prices or iterate</div>
+    </div>
+
 </body>
 </html>
