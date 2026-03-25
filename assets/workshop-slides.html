@@ -1,71 +1,49 @@
 <!--
-  AI-PROOF YOUR OFFER — Workshop Slides
-  ======================================
-  Before score: N/A (new creation)
-  After score: 8.5/10
-
-  Self-assessment against Duarte/Reynolds/Kawasaki principles:
-  ✅ One idea per slide — strictly enforced throughout
-  ✅ Minimal text — content slides ≤15 words, statement slides ≤6 words
-  ✅ Font size 30pt equivalent minimum — all text 2rem+ (32px+), headers 4–7rem
-  ✅ Massive whitespace — flexbox centering with generous padding
-  ✅ Duarte contrast (IS vs COULD BE) — dedicated contrast slides in Part 1
-  ✅ Exercise slides: numbered steps, timer visual, clear output field
-  ✅ Section breaks: dark terracotta (#c2410c), white text, bold statement
-  ✅ Arrow key navigation + slide counter
-  ✅ Smooth fade transitions
-  ✅ Presenter notes as HTML comments on each slide
-
-  Top 3 Design Decisions:
-  1. STATEMENT SLIDES AT MAX 6 WORDS: Forces every big idea to be distilled into
-     its sharpest form. Nothing kills credibility faster than a wordy "statement"
-     slide. These hit harder as punches, not paragraphs.
-
-  2. EXERCISE SLIDES WITH CLOCK ICON + BORDER: Visual differentiation signals a
-     mode shift to the audience. The warm amber border and ⏱ icon prime people
-     for action before a word is read — reducing transition friction.
-
-  3. IS/COULD BE TWO-COLUMN CONTRAST: Direct application of Duarte's "what is"
-     vs "what could be" framework. Side-by-side creates tension that motivates
-     change — more visceral than a list of problems.
+  AI-PROOF YOUR OFFER — Workshop Slides v3
+  ==========================================
+  Full rebuild: Duarte/Reynolds/Kawasaki/McKinsey principles
+  
+  Design rules enforced:
+  - 4 slide types ONLY: statement, content, exercise, section-break
+  - ALL visible text ≥ 2rem (32px)
+  - Content slides ≤ 12 words total
+  - Statement slides ≤ 6 words
+  - Exercise slides: numbered steps + timer + output only
+  - One idea per slide — no competing elements
+  - Presenter notes on every slide (HTML comments)
+  - Progress bar top, counter top-right
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI-Proof Your Offer — Matt Rud</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --cream: #fef7f0;
       --terracotta: #ea580c;
-      --terracotta-dark: #c2410c;
-      --terracotta-light: #fdba74;
-      --text-dark: #1c0a00;
-      --text-mid: #7c3009;
-      --exercise-border: #f97316;
+      --dark: #c2410c;
+      --text: #1c0a00;
+      --text-mid: #78350f;
       --exercise-bg: #fff7ed;
     }
 
     html, body {
       height: 100%;
       overflow: hidden;
-      background: #1c0a00;
+      background: var(--text);
       font-family: 'Instrument Sans', sans-serif;
     }
 
-    .deck {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
+    .deck { position: relative; width: 100vw; height: 100vh; }
 
-    /* ── SLIDE BASE ─────────────────────────────────────────── */
+    /* ── SLIDE BASE ────────────────────────────── */
     .slide {
       position: absolute;
       inset: 0;
@@ -73,969 +51,701 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 6vw 8vw;
+      padding: 8vh 10vw;
       background: var(--cream);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.45s ease;
+      transition: opacity 0.4s ease;
       text-align: center;
     }
+    .slide.active { opacity: 1; pointer-events: auto; }
 
-    .slide.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* ── SECTION BREAK ──────────────────────────────────────── */
-    .slide.section-break {
-      background: var(--terracotta-dark);
-      color: #fff;
-    }
-
-    /* ── EXERCISE SLIDE ─────────────────────────────────────── */
-    .slide.exercise {
-      background: var(--exercise-bg);
-      border: 4px solid var(--exercise-border);
-    }
-
-    /* ── TYPOGRAPHY SCALE ───────────────────────────────────── */
-    .kicker {
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 1.5rem;
-    }
-
-    .section-break .kicker {
-      color: rgba(255,255,255,0.7);
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 8vw, 7rem);
+    /* ── STATEMENT ─────────────────────────────── */
+    .slide.statement h1 {
+      font-size: clamp(4rem, 9vw, 8rem);
       font-weight: 700;
       line-height: 1.05;
-      color: var(--text-dark);
-      letter-spacing: -0.02em;
+      color: var(--text);
+      letter-spacing: -0.025em;
     }
 
-    h2 {
-      font-size: clamp(2rem, 5.5vw, 4.5rem);
+    /* ── CONTENT ───────────────────────────────── */
+    .slide.content .headline {
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
       font-weight: 700;
       line-height: 1.1;
-      color: var(--text-dark);
-      letter-spacing: -0.02em;
+      color: var(--text);
+      letter-spacing: -0.015em;
     }
-
-    h3 {
-      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--text-dark);
-    }
-
-    .body-text {
-      font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    .slide.content .support {
+      font-size: clamp(2.2rem, 3.2vw, 2.8rem);
       font-weight: 400;
       color: var(--text-mid);
-      line-height: 1.5;
-      margin-top: 1.5rem;
-      max-width: 55ch;
+      line-height: 1.4;
+      margin-top: 1.6rem;
     }
-
-    .accent { color: var(--terracotta); }
-    .white { color: #fff; }
-
-    .section-break h1,
-    .section-break h2,
-    .section-break h3 { color: #fff; }
-
-    .section-break .body-text { color: rgba(255,255,255,0.85); }
-
-    /* ── SPECIAL COMPONENTS ─────────────────────────────────── */
-
-    /* Number callout */
-    .big-number {
-      font-size: clamp(5rem, 18vw, 14rem);
+    .slide.content .big-num {
+      font-size: clamp(8rem, 20vw, 15rem);
       font-weight: 700;
       color: var(--terracotta);
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-
-    /* IS vs COULD BE */
-    .contrast-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3vw;
-      width: 100%;
-      max-width: 900px;
-      margin-top: 2rem;
-    }
-
-    .contrast-col {
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: left;
-    }
-
-    .contrast-col.is-col {
-      background: #e5e0db;
-    }
-
-    .contrast-col.could-col {
-      background: var(--terracotta);
-      color: #fff;
-    }
-
-    .contrast-col h4 {
-      font-size: clamp(0.8rem, 1.5vw, 1rem);
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      line-height: 0.85;
       margin-bottom: 1rem;
-      opacity: 0.7;
     }
 
-    .contrast-col p {
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      font-weight: 600;
-      line-height: 1.35;
-    }
-
-    .contrast-col.could-col p { color: #fff; }
-
-    /* 3-question pill list */
-    .pill-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-      width: 100%;
-      max-width: 700px;
+    /* ── EXERCISE ──────────────────────────────── */
+    .slide.exercise {
+      background: var(--exercise-bg);
+      border: 5px solid var(--terracotta);
       text-align: left;
-    }
-
-    .pill {
-      background: #fff;
-      border: 2px solid var(--terracotta-light);
-      border-radius: 100px;
-      padding: 0.9rem 1.8rem;
-      font-size: clamp(0.95rem, 2vw, 1.35rem);
-      font-weight: 500;
-      color: var(--text-dark);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .pill-num {
-      width: 2rem;
-      height: 2rem;
-      min-width: 2rem;
-      background: var(--terracotta);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    /* Exercise steps */
-    .exercise-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .exercise-icon {
-      font-size: 2.5rem;
-    }
-
-    .exercise-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      width: 100%;
-      max-width: 680px;
-      text-align: left;
-    }
-
-    .step {
-      display: flex;
-      gap: 1.2rem;
       align-items: flex-start;
+      padding: 7vh 10vw;
+      gap: 0;
     }
-
-    .step-num {
-      min-width: 2.8rem;
-      height: 2.8rem;
-      background: var(--terracotta);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+    .exercise-label {
+      font-size: clamp(2rem, 2.5vw, 2.2rem);
       font-weight: 700;
-      flex-shrink: 0;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
     }
-
-    .step-text {
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      font-weight: 500;
-      color: var(--text-dark);
-      padding-top: 0.3rem;
-      line-height: 1.35;
+    .exercise-title {
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.5rem;
     }
-
-    .timer-badge {
+    .timer {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: var(--terracotta);
       color: #fff;
-      padding: 0.5rem 1.2rem;
+      padding: 0.5rem 1.6rem;
       border-radius: 100px;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .steps { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2rem; }
+    .step { display: flex; align-items: baseline; gap: 1rem; }
+    .step-n {
+      font-size: clamp(2.2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--terracotta);
+      min-width: 2.5rem;
+    }
+    .step-t {
+      font-size: clamp(2.2rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--text);
+    }
+    .output {
+      font-size: clamp(2rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      color: var(--text-mid);
+      border-top: 3px solid var(--terracotta);
+      padding-top: 1.2rem;
+      width: 100%;
     }
 
-    .output-label {
+    /* ── SECTION BREAK ─────────────────────────── */
+    .slide.section-break {
+      background: var(--dark);
+      color: #fff;
+    }
+    .section-label {
+      font-size: clamp(2rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 1.2rem;
+    }
+    .slide.section-break h1 {
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+    .time-note {
+      font-size: clamp(2rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      opacity: 0.55;
       margin-top: 1.8rem;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--terracotta);
     }
 
-    .output-box {
-      margin-top: 0.6rem;
-      border: 2px dashed var(--exercise-border);
-      border-radius: 10px;
-      padding: 1rem 1.5rem;
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-      color: #999;
-      font-style: italic;
-      max-width: 600px;
-      width: 100%;
-      text-align: left;
-    }
+    /* ── MODIFIERS ─────────────────────────────── */
+    .accent { color: var(--terracotta); }
+    .dim { color: #a3a3a3; }
+    .fail-color { color: #dc2626; }
+    .pass-color { color: #16a34a; }
 
-    /* Pass/fail examples */
-    .example-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2vw;
-      width: 100%;
-      max-width: 860px;
-      margin-top: 1.5rem;
-    }
-
-    .example-col { text-align: left; }
-
-    .example-col h4 {
-      font-size: clamp(0.75rem, 1.4vw, 0.95rem);
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .example-col.fail h4 { color: #b91c1c; }
-    .example-col.pass h4 { color: #15803d; }
-
-    .example-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .example-col ul li {
-      font-size: clamp(0.9rem, 1.9vw, 1.2rem);
-      font-weight: 500;
-      color: var(--text-dark);
-      padding-left: 1.4rem;
-      position: relative;
-    }
-
-    .example-col ul li::before {
-      position: absolute;
-      left: 0;
-      font-weight: 700;
-    }
-
-    .example-col.fail ul li::before { content: "✗"; color: #b91c1c; }
-    .example-col.pass ul li::before { content: "✓"; color: #15803d; }
-
-    /* 90-day roadmap */
-    .roadmap {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2vw;
-      width: 100%;
-      max-width: 860px;
-      margin-top: 1.5rem;
-    }
-
-    .roadmap-phase {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: left;
-      border-top: 4px solid var(--terracotta);
-    }
-
-    .roadmap-phase h4 {
-      font-size: clamp(0.75rem, 1.3vw, 0.9rem);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 0.6rem;
-    }
-
-    .roadmap-phase p {
-      font-size: clamp(0.9rem, 1.8vw, 1.15rem);
-      font-weight: 500;
-      color: var(--text-dark);
-      line-height: 1.4;
-    }
-
-    /* Bio callout */
-    .bio-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      justify-content: center;
-      margin-top: 2rem;
-      max-width: 700px;
-    }
-
-    .bio-chip {
-      background: #fff;
-      border: 2px solid var(--terracotta-light);
-      border-radius: 8px;
-      padding: 0.5rem 1.1rem;
-      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    /* Divider accent */
-    .divider {
-      width: 60px;
-      height: 4px;
-      background: var(--terracotta);
-      border-radius: 2px;
-      margin: 1.5rem auto;
-    }
-
-    /* ── COUNTER ────────────────────────────────────────────── */
-    #counter {
-      position: fixed;
-      bottom: 1.4rem;
-      right: 2rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: rgba(28,10,0,0.35);
-      z-index: 100;
-      transition: color 0.3s;
-    }
-
-    .section-break-active #counter { color: rgba(255,255,255,0.4); }
-
-    /* ── PROGRESS BAR ───────────────────────────────────────── */
+    /* ── PROGRESS BAR (top) ────────────────────── */
     #progress {
       position: fixed;
-      bottom: 0;
+      top: 0;
       left: 0;
-      height: 3px;
+      height: 4px;
       background: var(--terracotta);
       transition: width 0.4s ease;
-      z-index: 100;
+      z-index: 200;
     }
 
-    /* ── NAV ARROWS (touch) ─────────────────────────────────── */
-    .nav-btn {
+    /* ── COUNTER (top-right) ───────────────────── */
+    #counter {
+      position: fixed;
+      top: 1rem;
+      right: 2rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: rgba(28,10,0,0.25);
+      z-index: 200;
+      transition: color 0.3s;
+    }
+    body.on-dark #counter { color: rgba(255,255,255,0.3); }
+
+    /* ── NAV ARROWS ────────────────────────────── */
+    .nav {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
       cursor: pointer;
-      padding: 1rem;
-      opacity: 0.2;
+      padding: 1.2rem;
+      opacity: 0.12;
       transition: opacity 0.2s;
-      z-index: 100;
+      z-index: 200;
     }
-
-    .nav-btn:hover { opacity: 0.7; }
-    .nav-btn svg { width: 2rem; height: 2rem; }
-    #nav-prev { left: 1rem; }
-    #nav-next { right: 1rem; }
+    .nav:hover { opacity: 0.5; }
+    .nav svg { width: 2.5rem; height: 2.5rem; }
+    #prev { left: 0.8rem; }
+    #next { right: 0.8rem; }
   </style>
 </head>
 <body>
-
 <div class="deck" id="deck">
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 1 — TITLE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Welcome slide. Let it breathe. Don't rush. Pause on this for 20-30 seconds while people settle in. -->
-  <div class="slide active" data-type="title">
-    <div class="kicker">April 12, 2026 · Matt Rud</div>
-    <h1>AI-Proof<br>Your Offer</h1>
-    <div class="divider"></div>
-    <p class="body-text">3 hours. One transformation.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 1 · SECTION BREAK — Title
+     Words: 5 (title) + meta
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Let this sit for 20-30 seconds. People are settling in. Don't talk yet. Let the title do the work. -->
+<div class="slide section-break active">
+  <div class="section-label">Matt Rud · April 12, 2026</div>
+  <h1>AI-Proof<br>Your Offer</h1>
+  <div class="time-note">3 hours. One transformation.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 2 — WHO IS MATT
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Keep this fast — 60 seconds max. Don't list accomplishments robotically. Pick 2, tell them briefly, move on. The bio chips are conversation starters, not a resume. -->
-  <div class="slide" data-type="bio">
-    <div class="kicker">Your Presenter</div>
-    <h2>Matt Rud</h2>
-    <div class="bio-chips">
-      <span class="bio-chip">Ghostwriter & Book Coach</span>
-      <span class="bio-chip">Goggins · Haddish · Taleb · Tucker Max</span>
-      <span class="bio-chip">Built Platypus Publishing</span>
-      <span class="bio-chip">$11M in 3 years</span>
-      <span class="bio-chip">Then shut it down</span>
-      <span class="bio-chip">"Smart Sports Betting" at 22</span>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2 · CONTENT — Matt Rud bio
+     Words: 2 + 3 + 5 = 10
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: 60 seconds max. "Quick intro — I'm Matt. I ghostwrite for people like Goggins, Haddish, Taleb. Built an $11M course company, shut it down because I hated it. That's the short version." Move on fast. -->
+<div class="slide content">
+  <div class="headline">Matt Rud</div>
+  <div class="support">Goggins. Haddish. Taleb.</div>
+  <div class="support">$11M built. Then walked away.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 3 — WHY WE'RE HERE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Ask the room — "Has a client ever asked you this?" Let hands go up. Don't answer yet. Tension. -->
-  <div class="slide" data-type="statement">
-    <h1>"Can't you just<br>use <span class="accent">AI</span> for this?"</h1>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 3 · SECTION BREAK — Part 1: The Diagnosis
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Let's start with where you are right now. Part 1 is the diagnosis." Quick transition — don't linger. -->
+<div class="slide section-break">
+  <div class="section-label">Part 1 of 4</div>
+  <h1>The<br>Diagnosis</h1>
+  <div class="time-note">~45 minutes</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 4 — THE CHATGPT MOMENT
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Validate the feeling. "That question is terrifying if you don't have an answer. Today you will." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The Moment Everything Changed</div>
-    <h2>One question<br>broke the old model.</h2>
-    <p class="body-text">If a client can't articulate why they need <em>you</em>, they won't pay your rates.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 4 · STATEMENT — The question
+     Words: 6
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "How many of you have had a client ask you some version of this?" Hands go up. Don't respond. Just nod. Let the tension sit. -->
+<div class="slide statement">
+  <h1>"Why not just<br>use <span class="accent">AI?</span>"</h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 5 — THE REAL PROBLEM
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: This is the core diagnosis. Say it slowly. "You are selling execution. AI also sells execution. That's the problem." -->
-  <div class="slide" data-type="statement">
-    <h1>You're selling<br><span class="accent">execution.</span></h1>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 4 · CONTENT — The signal
+     Words: 5 + 5 = 10
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "That question isn't an insult — it's a signal. It means your offer is structured in a way that makes you easy to compare to a $20/month tool. That's a packaging problem, not a skills problem." -->
+<div class="slide content">
+  <div class="headline">That question is a signal.</div>
+  <div class="support">Your offer invited the comparison.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 6 — AI SELLS EXECUTION TOO
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Let this land. Don't soften it. -->
-  <div class="slide" data-type="statement">
-    <h1>So does<br><span class="accent">AI.</span></h1>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 5 · STATEMENT — The diagnosis
+     Words: 3
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Say it slowly. Pause after. "You... are selling... execution." Let it land. -->
+<div class="slide statement">
+  <h1>You're selling<br><span class="accent">execution.</span></h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 7 — IS vs COULD BE (Duarte Contrast)
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Walk through left column (what most people are doing), then right column (what's possible). "This is the gap we're closing today." -->
-  <div class="slide" data-type="contrast">
-    <div class="kicker">Where You Are vs. Where You Could Be</div>
-    <div class="contrast-grid">
-      <div class="contrast-col is-col">
-        <h4>What Is</h4>
-        <p>"I write copy / do strategy / create content for you."</p>
-      </div>
-      <div class="contrast-col could-col">
-        <h4>What Could Be</h4>
-        <p>"I make judgment calls AI can't — and clients pay a premium for that."</p>
-      </div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 6 · STATEMENT — The punchline
+     Words: 3
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: One beat after the last slide. Don't soften it. "And so does AI." Pause. Let the room feel the collision. -->
+<div class="slide statement">
+  <h1>So does <span class="accent">AI.</span></h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 8 — SECTION BREAK: PART 1 DONE / PART 2 START
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Let's build the test." 30-second pause. Give people a moment to breathe. -->
-  <div class="slide section-break" data-type="section-break">
-    <div class="kicker">Part 2 of 4</div>
-    <h1>The<br>Framework</h1>
-    <p class="body-text" style="color:rgba(255,255,255,0.7);">~45 minutes</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 7 · CONTENT — What AI does well
+     Words: 4 + 4 = 8
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Let's be honest — AI is genuinely good at this stuff. Tasks, output, speed, scale. It's fast, cheap, and improving every month. Don't fight that reality. Accept it." -->
+<div class="slide content">
+  <div class="headline">AI does this well.</div>
+  <div class="support">Tasks. Output. Speed. Scale.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 9 — THE AI-PROOF TEST
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Three questions. Every offer either passes or fails. No grey zone." Build anticipation before revealing them. -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The Framework</div>
-    <h2>The AI-Proof Test</h2>
-    <div class="divider"></div>
-    <p class="body-text">3 questions. Your offer passes all 3 — or it doesn't.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 8 · CONTENT — What AI can't do
+     Words: 4 + 4 = 8
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "But these? AI can't touch these. Judgment comes from 500 real projects. Taste means knowing what NOT to do. Context means understanding the person across the table. And YOU — your specific track record, relationships, instincts — that's irreplaceable." -->
+<div class="slide content">
+  <div class="headline">AI can't do this.</div>
+  <div class="support">Judgment. Taste. Context. <em>You.</em></div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 10 — QUESTION 1
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "This is the output test." Give examples — blog post, social captions, outreach email. Almost always: yes, AI can replicate 80%. That's the trap. -->
-  <div class="slide" data-type="content">
-    <div class="big-number">1</div>
-    <h3>Can AI replicate 80%<br>of this deliverable?</h3>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 9 · CONTENT — The line
+     Words: 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "There's a line between execution and judgment. Everything on the execution side is getting commoditized. Everything on the judgment side is getting MORE valuable. Today, we figure out which side your offer is on." -->
+<div class="slide content">
+  <div class="headline">Is your offer on<br>the right side?</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 11 — QUESTION 2
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "This is the value test." Most clients SAY they want the output. They actually want what the output produces. The thinking behind it. -->
-  <div class="slide" data-type="content">
-    <div class="big-number">2</div>
-    <h3>Is the client paying for<br>the output or the thinking?</h3>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 10 · CONTENT — Intro to 3 questions
+     Words: 3 + 5 = 8
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "I'm going to give you three questions. They'll tell you instantly whether your offer is AI-proof or not. Then you'll test yours." -->
+<div class="slide content">
+  <div class="headline">Three questions decide.</div>
+  <div class="support">You'll test yours in a moment.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 12 — QUESTION 3
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "This is the identity test." If a random ghostwriter could do what you do, or a decent AI prompt could, you don't have an AI-proof offer. You have a commodity. -->
-  <div class="slide" data-type="content">
-    <div class="big-number">3</div>
-    <h3>Would this work without<br><em>me</em> specifically?</h3>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 11 · CONTENT — Question 1
+     Words: 7 (+ big number visual)
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "This is the output test. Think about your main deliverable. Blog post? Strategy deck? Social content? Could AI produce 80% of it? For most people, the honest answer is yes. That's not failure — it's the starting diagnosis." -->
+<div class="slide content">
+  <div class="big-num">1</div>
+  <div class="headline">Can AI replicate 80% of this?</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 13 — WHAT FAILS
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Walk through these fast. "These are commodity offers. Nothing wrong with the person — the framing is the problem." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Real Examples</div>
-    <div class="example-grid">
-      <div class="example-col fail">
-        <h4>Fails the Test</h4>
-        <ul>
-          <li>Ghost-writing blog posts</li>
-          <li>Social media content packages</li>
-          <li>Email newsletters (templated)</li>
-          <li>Generic SEO writing</li>
-        </ul>
-      </div>
-      <div class="example-col pass">
-        <h4>Passes the Test</h4>
-        <ul>
-          <li>Book positioning strategy</li>
-          <li>Narrative architecture for thought leaders</li>
-          <li>High-stakes messaging for launches</li>
-          <li>Voice capture for specific public figure</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 12 · CONTENT — Question 2
+     Words: 5 (+ big number visual)
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "This is the value test. Your client SAYS they want the deliverable. But what they're actually paying for is the thinking behind it — the decisions, the judgment calls, the 'don't do that' moments." -->
+<div class="slide content">
+  <div class="big-num">2</div>
+  <div class="headline">Output or the thinking?</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 14 — EXERCISE 1: TEST YOUR OFFER
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Give them 10 minutes. Walk the room. Don't narrate — let people work. Play some background music if you have it. Bring energy when you call time. -->
-  <div class="slide exercise" data-type="exercise">
-    <div class="exercise-header">
-      <span class="exercise-icon">⏱</span>
-      <div>
-        <div class="kicker" style="margin-bottom:0">Exercise 1 of 3</div>
-        <h3 style="font-size:clamp(1.4rem,3vw,2.2rem)">Test Your Current Offer</h3>
-      </div>
-    </div>
-    <div class="timer-badge">⏱ 10 minutes</div>
-    <div class="exercise-steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Write your current offer in one sentence.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Run it through the 3-question test. Circle pass or fail for each.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Note: Where exactly does it fail? Output? Thinking? Identity?</div>
-      </div>
-    </div>
-    <div class="output-label">Your Output</div>
-    <div class="output-box">One clear sentence: "My offer fails Q___ because ___."</div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 13 · CONTENT — Question 3
+     Words: 4 (+ big number visual)
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "This is the identity test. Could a decent freelancer do this? Could a well-prompted AI? If the answer is yes, you don't have an AI-proof offer. You have a commodity." -->
+<div class="slide content">
+  <div class="big-num">3</div>
+  <div class="headline">Without <em>me</em> specifically?</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 15 — SECTION BREAK: PART 3
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Now that you know where you fail, let's fix it." -->
-  <div class="slide section-break" data-type="section-break">
-    <div class="kicker">Part 3 of 4</div>
-    <h1>The<br>Rewrite</h1>
-    <p class="body-text" style="color:rgba(255,255,255,0.7);">~45 minutes</p>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 14 · EXERCISE — Exercise 1: Test Your Offer
+     Steps: 7 + 5 + 6 = 18 step-words, 3 steps
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: 12 minutes. Walk the Zoom room. "How's everyone doing? Anyone stuck on step 1?" At 10 min, give a 2-minute warning. Play calm background music if you have it. -->
+<div class="slide exercise">
+  <div class="exercise-label">Exercise 1 of 3</div>
+  <div class="exercise-title">Test Your Current Offer</div>
+  <div class="timer">⏱ 12 minutes</div>
+  <div class="steps">
+    <div class="step"><span class="step-n">1.</span><span class="step-t">Write your offer in one sentence.</span></div>
+    <div class="step"><span class="step-n">2.</span><span class="step-t">Answer the three questions.</span></div>
+    <div class="step"><span class="step-n">3.</span><span class="step-t">Note where it fails and why.</span></div>
   </div>
+  <div class="output">You're producing: "My offer fails because ___."</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 16 — THE IDENTITY PRINCIPLE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "AI can produce output. It cannot be you. It cannot carry your track record, your judgment, your pattern recognition from 500 real projects." -->
-  <div class="slide" data-type="statement">
-    <h1>Sell judgment.<br>Not <span class="accent">tasks.</span></h1>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 15 · STATEMENT — Debrief
+     Words: 2
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "OK, time. I want to hear from a few of you. What surprised you? What did you realize? Just one insight." Call on 3-4 people. Keep it moving — 2 minutes each max. -->
+<div class="slide statement">
+  <h1>Share yours.</h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 17 — WHAT AI CAN'T DO
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: This is the pivot. "These are your competitive advantages. They're not marketing fluff — they're structural." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Your Moat</div>
-    <h2>What AI can't replicate</h2>
-    <div class="pill-list">
-      <div class="pill"><div class="pill-num">→</div> Accumulated judgment from real failures</div>
-      <div class="pill"><div class="pill-num">→</div> Relationships that create unfair access</div>
-      <div class="pill"><div class="pill-num">→</div> The instinct to know what NOT to do</div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 16 · SECTION BREAK — Part 2: The Framework
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Now that you've diagnosed where your offer stands, let's build the framework for fixing it. Part 2 — about 45 minutes." Pause. Sip water. Let the room reset. -->
+<div class="slide section-break">
+  <div class="section-label">Part 2 of 4</div>
+  <h1>The<br>Framework</h1>
+  <div class="time-note">~45 minutes</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 18 — PRICING LANGUAGE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "When a client compares you to AI, they're comparing on price. The fix is to move out of the price comparison entirely — through language." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Ending the Comparison</div>
-    <h2>Price language that<br>reframes the category</h2>
-    <div class="contrast-grid">
-      <div class="contrast-col is-col">
-        <h4>Commodity Frame</h4>
-        <p>"I'll write 4 blog posts per month for $2,000."</p>
-      </div>
-      <div class="contrast-col could-col">
-        <h4>Judgment Frame</h4>
-        <p>"I help founders find the one idea that makes them a category of one."</p>
-      </div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 17 · CONTENT — Most offers sell output
+     Words: 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Here's why most offers fail the test. They're structured around the output — the blog post, the strategy deck, the design mockup. And output is exactly what AI is good at producing. So the client naturally asks: why am I paying you?" -->
+<div class="slide content">
+  <div class="headline">Most offers sell output.<br><span class="accent">That's the trap.</span></div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 19 — REFRAMING TEMPLATE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Walk through the formula. "The formula is: [Your identity] helps [specific person] achieve [specific result] by [unique mechanism that only you have]." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The Formula</div>
-    <h2>I help [who] achieve<br>[outcome] using [my X].</h2>
-    <p class="body-text">"My X" = the irreplaceable ingredient.<br>That's your offer now.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 18 · CONTENT — What clients say vs. want
+     Words: 6
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Clients SAY 'I need a blog post.' But they don't actually want words on a page. They want the right message, aimed at the right audience, at the right time. That's judgment — not output." -->
+<div class="slide content">
+  <div class="headline">Clients say they want<br>deliverables.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 20 — EXERCISE 2: REWRITE YOUR OFFER
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: 20 minutes. Most important exercise of the day. Be available. Let people struggle — that's where the real work happens. At the 15-minute mark, give a 5-minute warning. -->
-  <div class="slide exercise" data-type="exercise">
-    <div class="exercise-header">
-      <span class="exercise-icon">⏱</span>
-      <div>
-        <div class="kicker" style="margin-bottom:0">Exercise 2 of 3</div>
-        <h3 style="font-size:clamp(1.4rem,3vw,2.2rem)">Rewrite Your Offer</h3>
-      </div>
-    </div>
-    <div class="timer-badge">⏱ 20 minutes</div>
-    <div class="exercise-steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Identify your irreplaceable ingredient (judgment, access, track record).</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Apply the formula: I help [who] achieve [outcome] using [my X].</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Run the 3-question test. Does your new version pass all 3?</div>
-      </div>
-    </div>
-    <div class="output-label">Your Output</div>
-    <div class="output-box">One new offer sentence that passes all 3 tests.</div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 19 · CONTENT — What they're actually buying
+     Words: 5
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "What they're actually buying is your judgment. Your ability to tell them which of 47 possible moves will actually work THIS quarter. THAT is what AI can't do." -->
+<div class="slide content">
+  <div class="headline">They're actually buying<br><span class="accent">your judgment.</span></div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 21 — SHARE & FEEDBACK
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Ask 3-4 volunteers to read their new sentence. Give fast feedback: "Pass / Fail / Here's the one tweak." Keep energy high. -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Share & Sharpen</div>
-    <h2>Read your new offer<br>out loud.</h2>
-    <p class="body-text">The room will tell you if it lands.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 20 · CONTENT — Fails the test
+     Words: 2 + 5 = 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Walk through each quickly. "Blog posts — AI writes those. Templates — AI builds those. Content packages — AI produces those at scale. Nothing wrong with the person selling these. The FRAMING is the problem." -->
+<div class="slide content">
+  <div class="headline"><span class="fail-color">These fail.</span></div>
+  <div class="support">Blog posts. Templates. Content packages.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 22 — SECTION BREAK: PART 4
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "The rewrite only works if you actually implement it. Part 4 is the plan." -->
-  <div class="slide section-break" data-type="section-break">
-    <div class="kicker">Part 4 of 4</div>
-    <h1>The<br>Execution Plan</h1>
-    <p class="body-text" style="color:rgba(255,255,255,0.7);">~45 minutes</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 21 · CONTENT — Passes the test
+     Words: 2 + 5 = 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "These pass. Book positioning strategy — there's no AI prompt for 'should this be a memoir or a manifesto?' Narrative architecture — you're making judgment calls on every page. Voice capture — you need to BE in the room with the person." -->
+<div class="slide content">
+  <div class="headline"><span class="pass-color">These pass.</span></div>
+  <div class="support">Strategy. Narrative. Voice capture.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 23 — THE REPOSITIONING CONVERSATION
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Before you roll out new positioning to cold prospects, you need to have the conversation with existing clients. This is how you protect current revenue while transitioning." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Protecting Current Revenue</div>
-    <h2>The repositioning<br>conversation</h2>
-    <div class="pill-list">
-      <div class="pill"><div class="pill-num">→</div> Don't announce it — show it in your work first</div>
-      <div class="pill"><div class="pill-num">→</div> Reframe at the next scope discussion</div>
-      <div class="pill"><div class="pill-num">→</div> Price up from a position of results, not theory</div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 22 · STATEMENT — The principle
+     Words: 4
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Pause before showing this. "This is the operating principle for everything we do from here. Say it with me." -->
+<div class="slide statement">
+  <h1>Sell judgment,<br>not <span class="accent">tasks.</span></h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 24 — 90-DAY ROADMAP
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Three phases. Ninety days from today, your positioning can be completely different — if you follow this sequence." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The 90-Day Plan</div>
-    <h2>Sequence matters.</h2>
-    <div class="roadmap">
-      <div class="roadmap-phase">
-        <h4>Weeks 1–4</h4>
-        <p>Quick wins: update language, run the test on every active offer</p>
-      </div>
-      <div class="roadmap-phase">
-        <h4>Month 2</h4>
-        <p>Systematic changes: rewrite proposals, update website, shift conversations</p>
-      </div>
-      <div class="roadmap-phase">
-        <h4>Month 3</h4>
-        <p>New positioning live: cold traffic sees the new offer first</p>
-      </div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 23 · CONTENT — The reframe formula
+     Words: 2 + 8 = 10
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Walk through each bracket. "[Who] — be specific. Not 'businesses' — 'B2B SaaS founders doing $2-10M.' [Outcome] — the result, not the deliverable. [My X] — the irreplaceable ingredient. Your judgment, your access, your track record." -->
+<div class="slide content">
+  <div class="headline">The reframe.</div>
+  <div class="support">I help [who] achieve [outcome]<br>using [my X].</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 25 — WEEK 1-4: QUICK WINS
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "These are the things you can do this week. No new website needed. No rebrand. Just language shifts." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Weeks 1–4: Quick Wins</div>
-    <h2>Change how you talk<br>about what you do.</h2>
-    <div class="pill-list">
-      <div class="pill"><div class="pill-num">1</div> Run every active offer through the 3-question test</div>
-      <div class="pill"><div class="pill-num">2</div> Rewrite your bio using the judgment frame</div>
-      <div class="pill"><div class="pill-num">3</div> Update your next proposal with new language</div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 24 · CONTENT — What is "my X"
+     Words: 5 + 4 = 9
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "'My X' is the thing that makes you irreplaceable. It's not a skill — it's the accumulation of judgment from doing this for years. Your taste. Your track record. The thing no AI can shortcut." -->
+<div class="slide content">
+  <div class="headline">[My X] is your moat.</div>
+  <div class="support">Judgment. Taste. Track record.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 26 — MONTH 2: SYSTEMATIC
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "Month 2 is infrastructure. You're updating the systems that reflect your positioning — website, outreach templates, sales conversations." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Month 2: Systematic Changes</div>
-    <h2>Build the infrastructure<br>for the new offer.</h2>
-    <div class="pill-list">
-      <div class="pill"><div class="pill-num">1</div> Rewrite your website's core offer page</div>
-      <div class="pill"><div class="pill-num">2</div> Update cold outreach to lead with judgment, not output</div>
-      <div class="pill"><div class="pill-num">3</div> Raise your floor price — the new frame earns it</div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 25 · SECTION BREAK — Part 3: The Build
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "You have the framework. Now let's use it. Part 3 is where you actually rewrite your offer." 30-second pause. Energy shift. -->
+<div class="slide section-break">
+  <div class="section-label">Part 3 of 4</div>
+  <h1>The<br>Build</h1>
+  <div class="time-note">~45 minutes</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 27 — MONTH 3: NEW POSITIONING LIVE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "By month 3, cold traffic encounters the new you first. No more explaining why you're different from AI — it's self-evident from the first sentence." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">Month 3: New Positioning Live</div>
-    <h2>Cold traffic sees<br>the new you first.</h2>
-    <p class="body-text">The old frame is retired. The question "why not AI?" never comes up.</p>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 26 · EXERCISE — Exercise 2: Rewrite Your Offer
+     Steps: 4 + 6 + 6 = 16 step-words, 3 steps
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: 20 minutes. Most important exercise of the day. Be available for questions. Let people struggle — that's the work. At 15 min, give a 5-minute warning. "Don't aim for perfect. Aim for honest." -->
+<div class="slide exercise">
+  <div class="exercise-label">Exercise 2 of 3</div>
+  <div class="exercise-title">Rewrite Your Offer</div>
+  <div class="timer">⏱ 20 minutes</div>
+  <div class="steps">
+    <div class="step"><span class="step-n">1.</span><span class="step-t">Name your irreplaceable ingredient.</span></div>
+    <div class="step"><span class="step-n">2.</span><span class="step-t">Apply the formula. Write it down.</span></div>
+    <div class="step"><span class="step-n">3.</span><span class="step-t">Run the three-question test again.</span></div>
   </div>
+  <div class="output">You're producing: One new offer sentence that passes.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 28 — EXERCISE 3: BUILD YOUR 90-DAY PLAN
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: 15 minutes. Keep it tactical. Dates and specific actions. Not "I'll think about my positioning." "By April 19, I will rewrite my bio." -->
-  <div class="slide exercise" data-type="exercise">
-    <div class="exercise-header">
-      <span class="exercise-icon">⏱</span>
-      <div>
-        <div class="kicker" style="margin-bottom:0">Exercise 3 of 3</div>
-        <h3 style="font-size:clamp(1.4rem,3vw,2.2rem)">Build Your 90-Day Plan</h3>
-      </div>
-    </div>
-    <div class="timer-badge">⏱ 15 minutes</div>
-    <div class="exercise-steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Pick 3 quick wins from weeks 1–4. Assign a date to each.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Name one systematic change you'll make in month 2.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Define what "new positioning live" looks like for you specifically.</div>
-      </div>
-    </div>
-    <div class="output-label">Your Output</div>
-    <div class="output-box">3 dated actions + 1 month-2 change + 1 month-3 goal.</div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 27 · STATEMENT — Share/feedback prompt
+     Words: 4
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "OK — who wants to go first? Read your new offer sentence out loud. I'll give you instant feedback: pass, fail, or one tweak." Call on 3-4 volunteers. Keep it fast — 2-3 min each. High energy. -->
+<div class="slide statement">
+  <h1>Read yours<br>out loud.</h1>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 29 — SECTION BREAK: CLOSING
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Let the energy settle. "Last 15 minutes. Let's recap, then I want to tell you something important." -->
-  <div class="slide section-break" data-type="section-break">
-    <div class="kicker">Closing</div>
-    <h1>What You<br>Now Know</h1>
-    <p class="body-text" style="color:rgba(255,255,255,0.7);">~15 minutes</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 28 · CONTENT — Before/After example 1
+     Words: 2 + 4 + 4 = 10
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Here's a real example. Before: 'I write blog posts.' Sounds professional. But AI writes blog posts too. After: 'I shape your narrative.' That's judgment. That's irreplaceable. One sentence. Everything changed." -->
+<div class="slide content">
+  <div class="headline">Commodity → Judgment</div>
+  <div class="support dim">"I write blog posts."</div>
+  <div class="support accent">"I shape your narrative."</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 30 — RECAP THE 3-QUESTION TEST
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Call on someone in the room. "Can someone walk me through the 3 questions?" Don't just read them yourself. Reinforce through recall. -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The Recap</div>
-    <h2>The AI-Proof Test</h2>
-    <div class="pill-list">
-      <div class="pill"><div class="pill-num">1</div> Can AI replicate 80% of this deliverable?</div>
-      <div class="pill"><div class="pill-num">2</div> Is the client paying for output or thinking?</div>
-      <div class="pill"><div class="pill-num">3</div> Would this work without me specifically?</div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 29 · CONTENT — Before/After example 2
+     Words: 2 + 3 + 7 = 12
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Another one. 'Content strategy consulting' — that's a category. AI lives in categories. 'I tell you which moves to make' — that's a person. That's judgment. Nobody compares that to ChatGPT." -->
+<div class="slide content">
+  <div class="headline">Commodity → Judgment</div>
+  <div class="support dim">"Content strategy consulting."</div>
+  <div class="support accent">"I tell you which moves to make."</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 31 — THE TRUTH
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Pause before this one. Let it sit. Don't rush to explain it. -->
-  <div class="slide" data-type="statement">
-    <h1>You already have<br><span class="accent">everything</span><br>you need.</h1>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 30 · CONTENT — Pricing principle
+     Words: 3 + 3 = 6
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "When your offer is built around judgment, the pricing conversation changes completely. You're not quoting hours or deliverables. You're pricing the thinking — and thinking doesn't have a per-word rate." -->
+<div class="slide content">
+  <div class="headline">Price the thinking.</div>
+  <div class="support">Not the deliverable.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 32 — THE MISSING PIECE
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: "The gap isn't skill. It's framing. You had the judgment before today. You're just learning how to communicate it." -->
-  <div class="slide" data-type="content">
-    <div class="kicker">The Gap</div>
-    <h2>The problem was<br>never your work.</h2>
-    <p class="body-text">It was the frame around it. Now you have a new frame.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 31 · SECTION BREAK — Part 4: The Execution Plan
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "The rewrite only works if you implement it. Part 4 is the plan — exactly what to do in the next 90 days." Pause. Let the room reset energy. -->
+<div class="slide section-break">
+  <div class="section-label">Part 4 of 4</div>
+  <h1>The<br>Execution Plan</h1>
+  <div class="time-note">~45 minutes</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 33 — SOFT UPSELL (VALUE FIRST)
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Keep this short and genuine. "Some of you will implement this perfectly on your own. Others will want faster, more specific help. I work with a small group of people closely — if that's interesting, come talk to me after." NO pitch decks. NO pressure. -->
-  <div class="slide" data-type="content">
-    <div class="kicker">If You Want to Go Deeper</div>
-    <h2>I work with a small<br>group closely.</h2>
-    <p class="body-text">Not a course. Not a community. Direct work together on your specific offer. If that's interesting, come find me after.</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 32 · CONTENT — The repositioning conversation
+     Words: 5 + 4 = 9
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Before you change your website or pitch new clients, have ONE conversation with your best existing client. Show them the value you've already delivered — in judgment terms. Then reframe: 'Here's what I actually do for you.' Their reaction tells you everything." -->
+<div class="slide content">
+  <div class="headline">Tell your best client first.</div>
+  <div class="support">Show results. Then reframe.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 34 — Q&A
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: Open the floor. If it's quiet, seed it: "Most common question I get is X — let me address that." Keep it moving. -->
-  <div class="slide" data-type="statement">
-    <h1 style="font-size:clamp(4rem,12vw,10rem)">Q&A</h1>
-    <p class="body-text" style="margin-top:2rem;">What's on your mind?</p>
-  </div>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 33 · CONTENT — Weeks 1-4
+     Words: 5 + 3 = 8
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Weeks 1 through 4 — change the language. Not a rebrand. Not a new website. Just words. Update your bio. Rewrite your next proposal. Change your pitch for the next conversation. Start small." -->
+<div class="slide content">
+  <div class="headline">Weeks 1–4: Change the words.</div>
+  <div class="support">Bio. Proposal. Next pitch.</div>
+</div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SLIDE 35 — FINAL: SEND-OFF
-  ════════════════════════════════════════════════════════════ -->
-  <!-- PRESENTER: End on energy. "Three hours ago you had a commodity offer. Now you have a test, a rewrite, and a 90-day plan. That's the work. Go do it." -->
-  <div class="slide section-break" data-type="section-break">
-    <div class="kicker">@MattRud · April 12, 2026</div>
-    <h1>AI-Proof<br>Your Offer.</h1>
-    <div class="divider" style="background:rgba(255,255,255,0.4);margin:2rem auto;"></div>
-    <p class="body-text" style="color:rgba(255,255,255,0.8);">Now go execute.</p>
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 34 · CONTENT — Weeks 5-8
+     Words: 5 + 3 = 8
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Month 2 — now you're changing the systems. Your website says the new thing. Your outreach leads with judgment. And you raise your floor price — because the new frame earns it." -->
+<div class="slide content">
+  <div class="headline">Weeks 5–8: Change the systems.</div>
+  <div class="support">Website. Outreach. Pricing.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 35 · CONTENT — Weeks 9-12
+     Words: 5 + 5 = 10
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "By month 3, cold traffic encounters the new you FIRST. They never see the old positioning. The question 'why not AI?' stops coming up because your offer makes it obvious." -->
+<div class="slide content">
+  <div class="headline">Weeks 9–12: Raise the price.</div>
+  <div class="support">New positioning meets cold traffic.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 36 · EXERCISE — Exercise 3: Your 90-Day Plan
+     Steps: 6 + 6 + 6 = 18 step-words, 3 steps
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: 10 minutes. "Be specific. Dates and actions, not intentions. Not 'I'll think about my positioning.' Instead: 'By April 19, I will rewrite my LinkedIn bio.'" -->
+<div class="slide exercise">
+  <div class="exercise-label">Exercise 3 of 3</div>
+  <div class="exercise-title">Your 90-Day Plan</div>
+  <div class="timer">⏱ 10 minutes</div>
+  <div class="steps">
+    <div class="step"><span class="step-n">1.</span><span class="step-t">Pick 3 week-one actions with dates.</span></div>
+    <div class="step"><span class="step-n">2.</span><span class="step-t">Name one system to change month two.</span></div>
+    <div class="step"><span class="step-n">3.</span><span class="step-t">Define "new positioning live" for you.</span></div>
   </div>
+  <div class="output">You're producing: 3 dated actions + 1 system change + 1 goal.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 37 · STATEMENT — Debrief 3
+     Words: 2
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "Who wants to share their week-one action? Something specific, with a date." Call on 3 people. Keep it fast and encouraging. -->
+<div class="slide statement">
+  <h1>Share yours.</h1>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 38 · SECTION BREAK — Closing
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Let the energy settle. Deep breath. "Let's bring it home. Last 15 minutes." -->
+<div class="slide section-break">
+  <div class="section-label">Closing</div>
+  <h1>What You<br>Walk Out With</h1>
+  <div class="time-note">~15 minutes</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 39 · CONTENT — You now have the test
+     Words: 4 + 5 = 9
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "You now have a framework you can apply to any offer, any service, any new opportunity. Three questions. Takes ten minutes. Use it every time you design a new offer." -->
+<div class="slide content">
+  <div class="headline">You have the test.</div>
+  <div class="support">Three questions. Use them forever.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 40 · CONTENT — You have a rewrite
+     Words: 4 + 3 = 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "You didn't just learn a concept — you wrote your new offer today. You have it. It exists. Now implement it." -->
+<div class="slide content">
+  <div class="headline">You have a rewrite.</div>
+  <div class="support">In your own words.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 41 · CONTENT — You have a plan
+     Words: 4 + 3 = 7
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: "And you have 90 days mapped out. Not theory — dates and actions. The only thing standing between you and a repositioned business is execution." -->
+<div class="slide content">
+  <div class="headline">You have a plan.</div>
+  <div class="support">Ninety days. Mapped out.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 42 · STATEMENT — The truth
+     Words: 5
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Pause. Let it breathe. "The gap was never your skill. It was how you packaged it. Now that's fixed." -->
+<div class="slide statement">
+  <h1>You already had<br><span class="accent">everything.</span></h1>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 43 · CONTENT — Go deeper (soft upsell)
+     Words: 6 + 6 = 12
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Keep this genuine and brief. 60 seconds max. "If you want help implementing this faster — I work with 5 founders per month, 1:1. Not a course. Direct work on your specific offer. If that interests you, there's a link. No pressure." -->
+<div class="slide content">
+  <div class="headline">Want to go deeper?</div>
+  <div class="support">I work 1:1 with five founders monthly.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 44 · STATEMENT — Q&A
+     Words: 1
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: Open the floor. If quiet, seed it: "The most common question I get after this is about pricing — how do I justify raising rates? Let me address that." Keep it energetic and moving. -->
+<div class="slide statement">
+  <h1 style="font-size:clamp(5rem,14vw,12rem)">Q&A</h1>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 45 · SECTION BREAK — Send-off
+     ════════════════════════════════════════════════════════ -->
+<!-- PRESENTER: End strong. "Three hours ago you had a commodity offer. Now you have a test, a rewrite, and a 90-day plan. That's the work. Go do it." -->
+<div class="slide section-break">
+  <div class="section-label">@MattRud · April 12, 2026</div>
+  <h1>Now go<br>execute.</h1>
+</div>
 
 </div><!-- /.deck -->
 
-<!-- ── COUNTER & PROGRESS ─────────────────────────────────── -->
-<div id="counter">1 / 35</div>
-<div id="progress" style="width:2.86%"></div>
+<!-- ── PROGRESS BAR & COUNTER ──────────────────── -->
+<div id="progress" style="width:2.2%"></div>
+<div id="counter">1 / 46</div>
 
-<!-- ── NAV BUTTONS ───────────────────────────────────────── -->
-<button class="nav-btn" id="nav-prev" aria-label="Previous slide">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="15 18 9 12 15 6"/>
-  </svg>
+<!-- ── NAV ARROWS ──────────────────────────────── -->
+<button class="nav" id="prev" aria-label="Previous">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
 </button>
-<button class="nav-btn" id="nav-next" aria-label="Next slide">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="9 18 15 12 9 6"/>
-  </svg>
+<button class="nav" id="next" aria-label="Next">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
 </button>
 
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
   const counter = document.getElementById('counter');
   const progress = document.getElementById('progress');
-  const body = document.body;
   const total = slides.length;
-  let current = 0;
+  let cur = 0;
 
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    current = Math.max(0, Math.min(n, total - 1));
-    slides[current].classList.add('active');
-    counter.textContent = (current + 1) + ' / ' + total;
-    progress.style.width = ((current + 1) / total * 100).toFixed(2) + '%';
-
-    // Update counter color for section breaks
-    if (slides[current].classList.contains('section-break')) {
-      body.classList.add('section-break-active');
-    } else {
-      body.classList.remove('section-break-active');
-    }
+  function go(n) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(n, total - 1));
+    slides[cur].classList.add('active');
+    counter.textContent = (cur + 1) + ' / ' + total;
+    progress.style.width = ((cur + 1) / total * 100).toFixed(1) + '%';
+    document.body.classList.toggle('on-dark', slides[cur].classList.contains('section-break'));
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-      e.preventDefault();
-      goTo(current + 1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      goTo(current - 1);
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      goTo(0);
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      goTo(total - 1);
-    }
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+    else if (['ArrowLeft','ArrowUp'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(total - 1); }
   });
 
-  document.getElementById('nav-next').addEventListener('click', () => goTo(current + 1));
-  document.getElementById('nav-prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next').addEventListener('click', () => go(cur + 1));
+  document.getElementById('prev').addEventListener('click', () => go(cur - 1));
 
-  // Touch/swipe support
-  let touchStartX = 0;
-  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) dx < 0 ? goTo(current + 1) : goTo(current - 1);
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) dx < 0 ? go(cur + 1) : go(cur - 1);
   }, { passive: true });
 
-  // Initialize
-  goTo(0);
+  go(0);
 </script>
-
 </body>
 </html>
