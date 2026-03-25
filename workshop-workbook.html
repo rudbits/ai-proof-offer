@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Proof Your Offer | Workshop Workbook</title>
+    <style>
+        :root {
+            --terracotta: #C2410C;
+            --terracotta-dark: #9A3412;
+            --terracotta-light: #FDBA74;
+            --cream: #FFFBEB;
+            --cream-dark: #FEF3C7;
+            --charcoal: #1C1917;
+            --gray-100: #F5F5F4;
+            --gray-200: #E7E5E4;
+            --gray-500: #78716C;
+            --gray-700: #44403C;
+            --green-success: #16A34A;
+            --yellow-warning: #CA8A04;
+            --red-danger: #DC2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: white;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+            color: white;
+            padding: 60px;
+            margin: -40px;
+            margin-bottom: 60px;
+        }
+
+        .cover-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cover-title {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+
+        .cover-framework {
+            display: inline-block;
+            background: white;
+            color: var(--terracotta);
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .cover-meta {
+            position: absolute;
+            bottom: 40px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Section Headers */
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--terracotta);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-top: 40px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--terracotta);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        /* Agenda Table */
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        .agenda-table th {
+            background: var(--terracotta);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .agenda-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .agenda-table tr:nth-child(even) {
+            background: var(--gray-100);
+        }
+
+        .agenda-time {
+            font-weight: 600;
+            color: var(--terracotta);
+            white-space: nowrap;
+        }
+
+        /* Pre-Workshop Box */
+        .pre-workshop-box {
+            background: var(--cream);
+            border: 2px solid var(--cream-dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--terracotta);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        /* Exercise Sections */
+        .exercise {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+            border-left: 5px solid var(--terracotta);
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .exercise-number {
+            background: var(--terracotta);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            margin-right: 16px;
+        }
+
+        .exercise-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin: 0;
+        }
+
+        /* Templates */
+        .template {
+            background: white;
+            border: 2px dashed var(--gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .template-row {
+            display: flex;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+
+        .template-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            min-width: 140px;
+            padding-top: 8px;
+            font-size: 14px;
+        }
+
+        .template-input {
+            flex: 1;
+            min-height: 40px;
+            border-bottom: 2px solid var(--gray-200);
+            padding: 8px 0;
+            font-size: 15px;
+        }
+
+        .template-input::before {
+            content: "";
+            display: block;
+            height: 20px;
+        }
+
+        /* Writing Space */
+        .writing-space {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+            min-height: 200px;
+        }
+
+        .writing-space-lines {
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 27px,
+                var(--gray-200) 27px,
+                var(--gray-200) 28px
+            );
+            padding-top: 4px;
+        }
+
+        .writing-space-line {
+            height: 28px;
+            border-bottom: 1px solid transparent;
+        }
+
+        /* Examples */
+        .example-box {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            border-left: 4px solid var(--green-success);
+        }
+
+        .example-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green-success);
+            margin-bottom: 8px;
+        }
+
+        .example-title {
+            font-style: italic;
+            color: var(--gray-700);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .example-content {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .example-before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .before-box {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .after-box {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .before-label, .after-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .before-label { color: var(--red-danger); }
+        .after-label { color: var(--green-success); }
+
+        /* Value Chain Map */
+        .value-chain-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .value-chain-table th {
+            background: var(--charcoal);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .value-chain-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+        }
+
+        .layer-execution {
+            background: #FEE2E2;
+            color: var(--red-danger);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .layer-strategy {
+            background: #FEF9C3;
+            color: var(--yellow-warning);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .layer-judgment {
+            background: #DCFCE7;
+            color: var(--green-success);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Matrix */
+        .matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .matrix-cell {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .matrix-cell.execution {
+            background: #FEE2E2;
+            border: 2px solid var(--red-danger);
+        }
+
+        .matrix-cell.strategy {
+            background: #FEF9C3;
+            border: 2px solid var(--yellow-warning);
+        }
+
+        .matrix-cell.judgment {
+            background: #DCFCE7;
+            border: 2px solid var(--green-success);
+        }
+
+        .matrix-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .matrix-desc {
+            font-size: 12px;
+            color: var(--gray-700);
+        }
+
+        /* Framework Questions */
+        .framework-question {
+            background: linear-gradient(135deg, var(--terracotta-light) 0%, var(--cream) 100%);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 24px 0;
+            border: 1px solid var(--terracotta);
+        }
+
+        .framework-number {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--terracotta-dark);
+            margin-bottom: 8px;
+        }
+
+        .framework-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .framework-answer {
+            background: white;
+            border: 2px dashed var(--terracotta-light);
+            border-radius: 8px;
+            min-height: 80px;
+        }
+
+        /* 90-Day Roadmap */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .roadmap-month {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .roadmap-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .roadmap-badge {
+            background: var(--terracotta);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .roadmap-title {
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .roadmap-checklist {
+            list-style: none;
+        }
+
+        .roadmap-checklist li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--gray-500);
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            min-height: 300px;
+            padding: 24px;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: var(--gray-100);
+            border-radius: 8px;
+        }
+
+        .checklist-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--terracotta);
+            border-radius: 4px;
+            margin-right: 14px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checklist-content {
+            flex: 1;
+        }
+
+        .checklist-title {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .checklist-desc {
+            font-size: 13px;
+            color: var(--gray-700);
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .callout-warning {
+            background: #FEF3C7;
+            border-left: 4px solid var(--yellow-warning);
+        }
+
+        .callout-success {
+            background: #DCFCE7;
+            border-left: 4px solid var(--green-success);
+        }
+
+        .callout-tip {
+            background: var(--cream);
+            border-left: 4px solid var(--terracotta);
+        }
+
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Page Break */
+        .page-break {
+            page-break-after: always;
+            margin: 60px 0;
+        }
+
+        /* Enhanced Print Styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            
+            body {
+                padding: 0;
+                max-width: 100%;
+                font-size: 11pt;
+                line-height: 1.5;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .cover-page {
+                margin: 0;
+                min-height: calc(100vh - 30mm);
+                break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .page-break {
+                break-after: always;
+                margin: 30mm 0;
+            }
+            
+            h1, h2, h3 {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+            
+            .exercise, .framework-question, .roadmap-month {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            .exercise {
+                border-left-width: 3px;
+            }
+            
+            .matrix-cell, .roadmap-month, .agenda-table th {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .writing-space, .template-input, .framework-answer, .notes-section {
+                border: 1px solid #ccc;
+                background: #fafafa;
+            }
+            
+            .checklist-box, .checkbox {
+                border: 1px solid #666;
+            }
+            
+            /* Hide interactive elements */
+            .cta-button, a[href] {
+                color: var(--charcoal) !important;
+                text-decoration: none !important;
+            }
+            
+            /* Ensure backgrounds print */
+            .cover-page, .matrix-cell, .layer-execution, .layer-strategy, .layer-judgment {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Niche Template */
+        .niche-formula {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 24px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .niche-formula strong {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: var(--charcoal);
+            color: white;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-subtitle {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--terracotta);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray-500);
+            font-size: 12px;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <div class="cover-badge">90-Minute Workshop</div>
+        <h1 class="cover-title">AI-Proof<br>Your Offer</h1>
+        <p class="coversubtitle">A hands-on workbook for creative entrepreneurs who want to build a business around judgment—not tasks.</p>
+        <div class="cover-framework">Judgment Over Execution</div>
+        <div class="cover-meta">
+            <p>© 2026 Matt Rud | Workshop Workbook</p>
+        </div>
+    </div>
+
+    <!-- WORKSHOP AGENDA -->
+    <h1>Workshop Agenda</h1>
+    <p>In this 90-minute workshop, you'll move from understanding the problem to having a complete, re-architected offer that clients choose—not because AI can't do it—but because your taste and judgment are irreplaceable.</p>
+
+    <table class="agenda-table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Section</th>
+                <th>What You'll Do</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="agenda-time">0:00 - 10:00</td>
+                <td><strong>The Problem</strong></td>
+                <td>Understand why AI commoditizes fast—and see the pattern in your own business</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">10:00 - 25:00</td>
+                <td><strong>The Framework</strong></td>
+                <td>Learn the Judgment Over Execution framework and the AI-Proof Matrix</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">25:00 - 40:00</td>
+                <td><strong>Exercise 1</strong></td>
+                <td>Map your value chain to see where your value actually sits</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">40:00 - 55:00</td>
+                <td><strong>Exercise 2</strong></td>
+                <td>Find your uncomfortable niche—the specific audience + outcome that scares you</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">55:00 - 75:00</td>
+                <td><strong>Exercise 3</strong></td>
+                <td>Redesign your entire offer stack using Judgment focus</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">75:00 - 85:00</td>
+                <td><strong>Live Demo</strong></td>
+                <td>Watch a real before/after offer audit</td>
+            </tr>
+            <tr>
+                <td class="agenda-time">85:00 - 90:00</td>
+                <td><strong>Q&A + Next Steps</strong></td>
+                <td>Get your questions answered and commit to next steps</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-tip">
+        <strong>💡 Workshop Promise:</strong> "In 90 minutes, you'll have a re-architected offer that clients choose NOT because AI can't do it — but because your taste and judgment are irreplaceable."
+    </div>
+
+    <!-- PRE-WORKSHOP SECTION -->
+    <h2>Pre-Workshop Preparation</h2>
+    <p>Get maximum value from this workshop by completing these questions before we start:</p>
+
+    <div class="pre-workshop-box">
+        <h3><span class="question-number">1</span> What's one deliverable you currently provide that a client could theoretically get from AI?</h3>
+        <div class="writing-space" style="min-height: 60px;"></div>
+
+        <h3><span class="question-number">2</span> What's the specific outcome you help clients achieve? (Not what you DO—the RESULT they get)</h3>
+        <div class="writing-space" style="min-height: 60px;"></div>
+
+        <h3><span class="question-number">3</span> Who is your current target audience? Be as specific as possible.</h3>
+        <div class="writing-space" style="min-height: 60px;"></div>
+    </div>
+
+    <h3>What to Bring</h3>
+    <ul>
+        <li>This workbook (printed or digital)</li>
+        <li>Your current offer/positioning document</li>
+        <li>A willingness to get uncomfortable</li>
+        <li>Your willingness to challenge assumptions about how you deliver value</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- EXERCISE 1: VALUE CHAIN MAP -->
+    <h1>Exercise 1: Map Your Value Chain</h1>
+
+    <div class="exercise">
+        <div class="exercise-header">
+            <div class="exercise-number">1</div>
+            <div class="exercise-title">Value Chain Map</div>
+        </div>
+
+        <p>Every service or product has multiple layers. Some are vulnerable to AI commoditization, others aren't. Your job is to see exactly where your value sits.</p>
+
+        <h3>The Three Layers of Value</h3>
+
+        <div class="matrix">
+            <div class="matrix-cell execution">
+                <div class="matrix-title">🔴 Execution</div>
+                <div class="matrix-desc">Writing, designing, coding, producing. AI can do this.</div>
+            </div>
+            <div class="matrix-cell strategy">
+                <div class="matrix-title">🟡 Strategy</div>
+                <div class="matrix-desc">Suggesting, planning, outlining. AI can help, but needs direction.</div>
+            </div>
+            <div class="matrix-cell judgment">
+                <div class="matrix-title">🟢 Judgment</div>
+                <div class="matrix-desc">Choosing, committing, owning the decision. Only you can do this.</div>
+            </div>
+        </div>
+
+        <div class="callout callout-warning">
+            <strong>⚠️ The AI-Proof Question:</strong> "Where does my value sit?"<br>
+            If it's in Execution → You're vulnerable. If it's in Strategy → You're getting there. If it's in Judgment → You're AI-proof.
+        </div>
+
+        <h3>Instructions</h3>
+        <ol>
+            <li>List every deliverable you provide to clients</li>
+            <li>Mark each one: Execution / Strategy / Judgment</li>
+            <li>Color-code using the legend above</li>
+        </ol>
+
+        <h3>Your Value Chain Map</h3>
+        <table class="value-chain-table">
+            <thead>
+                <tr>
+                    <th style="width: 45%">Client Deliverable</th>
+                    <th style="width: 25%">Layer</th>
+                    <th style="width: 30%">AI Can Do This?</div>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-bottom: 2px solid var(--gray-200);"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example-box">
+            <div class="example-label">Example</div>
+            <div class="example-title">Value Chain Map for a Content Writer</div>
+            <table class="value-chain-table" style="margin-top: 12px;">
+                <tbody>
+                    <tr>
+                        <td>Write blog post</td>
+                        <td><span class="layer-execution">Execution</span></td>
+                        <td>YES — High vulnerability</td>
+                    </tr>
+                    <tr>
+                        <td>Research topic angles</td>
+                        <td><span class="layer-strategy">Strategy</span></td>
+                        <td>PARTIALLY — Needs direction</td>
+                    </tr>
+                    <tr>
+                        <td>Decide which stories only YOU can tell</td>
+                        <td><span class="layer-judgment">Judgment</span></td>
+                        <td>NO — This is the AI-proof layer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Your Key Insight</h3>
+        <p>After mapping your value chain, what's one shift you could make to move more of your value into the Judgment layer?</p>
+        <div class="writing-space" style="min-height: 100px;"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- EXERCISE 2: THE UNCOMFORTABLE NICHE -->
+    <h1>Exercise 2: Find Your Uncomfortable Niche</h1>
+
+    <div class="exercise">
+        <div class="exercise-header">
+            <div class="exercise-number">2</div>
+            <div class="exercise-title">The Uncomfortable Niche</div>
+        </div>
+
+        <p>The "uncomfortable niche" is a specific audience + specific outcome that makes you slightly uncomfortable. That's how you know it's right. Generic positioning gets lost. Specific, slightly scary positioning attracts.</p>
+
+        <div class="niche-formula">
+            "I help <strong>[SPECIFIC PERSON]</strong> achieve <strong>[SPECIFIC OUTCOME]</strong> — even though <strong>[THEIR DEEP FEAR]</strong>"
+        </div>
+
+        <h3>Why This Works</h3>
+        <ul>
+            <li><strong>Specific</strong> → Clients self-select (no chasing)</li>
+            <li><strong>Outcome-based</strong> → It's about their result, not your process</li>
+            <li><strong>Fear-based</strong> → Taps into emotional motivation</li>
+            <li><strong>Uncomfortable</strong> → If it doesn't scare you a little, it's not specific enough</li>
+        </ul>
+
+        <div class="example-box">
+            <div class="example-label">Examples: Generic vs. Uncomfortable</div>
+            <div class="two-col" style="margin-top: 16px;">
+                <div class="before-box">
+                    <div class="before-label">Generic</div>
+                    <p>"Help freelancers with marketing"</p>
+                </div>
+                <div class="after-box">
+                    <div class="after-label">Uncomfortable Niche</div>
+                    <p>"I help freelance designers who hate selling get 3 clients/month — without sending a single cold DM"</p>
+                </div>
+            </div>
+            <div class="two-col" style="margin-top: 12px;">
+                <div class="before-box">
+                    <div class="before-label">Generic</div>
+                    <p>"Consulting for startups"</p>
+                </div>
+                <div class="after-box">
+                    <div class="after-label">Uncomfortable Niche</div>
+                    <p>"I help solo founders who've raised &lt;$100k stop copying big-company strategies that don't work at their stage"</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Your Uncomfortable Niche</h3>
+        <p>Write 3 versions. Pick the one that makes you slightly uncomfortable. That's probably the right one.</p>
+
+        <div class="template">
+            <div class="template-row">
+                <div class="template-label">Version 1:</div>
+                <div class="template-input"></div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Version 2:</div>
+                <div class="template-input"></div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Version 3:</div>
+                <div class="template-input"></div>
+            </div>
+        </div>
+
+        <h3>Your Selected Uncomfortable Niche</h3>
+        <div class="writing-space" style="min-height: 120px;">
+            <p style="color: var(--gray-500); font-style: italic;">Fill in: "I help [SPECIFIC PERSON] achieve [SPECIFIC OUTCOME] — even though [THEIR DEEP FEAR]"</p>
+        </div>
+
+        <div class="callout callout-success">
+            <strong>✅ Why this works:</strong> The right niche isn't for everyone. It's for someone specific who needs exactly what you offer. By getting uncomfortable, you're actually getting more selective—which attracts better clients.
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- EXERCISE 3: OFFER STACK REDESIGN -->
+    <h1>Exercise 3: Redesign Your Offer Stack</h1>
+
+    <div class="exercise">
+        <div class="exercise-header">
+            <div class="exercise-number">3</div>
+            <div class="exercise-title">Offer Stack Redesign</div>
+        </div>
+
+        <p>Now it's time to transform your offer from execution-focused to judgment-focused. The key: shift from what you DO to what the client GETS.</p>
+
+        <h3>Current Offer Analysis</h3>
+        <div class="template">
+            <div class="template-row">
+                <div class="template-label">What:</div>
+                <div class="template-input">Describe your current offer</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Who:</div>
+                <div class="template-input">Who is it for?</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Price:</div>
+                <div class="template-input">Current price</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Format:</div>
+                <div class="template-input">Service / Product / Hybrid</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Vulnerability:</div>
+                <div class="template-input">What's the execution piece AI could replace?</div>
+            </div>
+        </div>
+
+        <h3>The Transformation</h3>
+        <div class="example-box">
+            <div class="example-label">Transformation Example</div>
+            <div class="example-before-after">
+                <div class="before-box">
+                    <div class="before-label">Before (Execution-focused)</div>
+                    <p>"I'll write 5 blog posts for you"</p>
+                    <p style="font-size: 12px; color: var(--gray-700); margin-top: 8px;">❌ Client can get this from AI. You're competing on price.</p>
+                </div>
+                <div class="after-box">
+                    <div class="after-label">After (Judgment-focused)</div>
+                    <p>"I'll help you decide which 5 stories only YOU can tell — and build a content engine that reflects your taste, not templates"</p>
+                    <p style="font-size: 12px; color: var(--gray-700); margin-top: 8px;">✅ Requires your taste + judgment. Can't be replicated by AI.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>AI-Proof Offer</h3>
+        <div class="template">
+            <div class="template-row">
+                <div class="template-label">What:</div>
+                <div class="template-input">Rewrite using Judgment focus — what's the outcome, not the process?</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Who:</div>
+                <div class="template-input">Use your uncomfortable niche</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Price:</div>
+                <div class="template-input">Justify via outcome, not time</div>
+            </div>
+            <div class="template-row">
+                <div class="template-label">Format:</div>
+                <div class="template-input">Upgrade to outcome-based</div>
+            </div>
+            <div class="template-row" style="background: var(--cream); margin: -24px; margin-top: 16px; padding: 24px; border-radius: 0 0 8px 8px;">
+                <div class="template-label" style="color: var(--terracotta);">UNIQUE MECHANISM:</div>
+                <div class="template-input" style="border-bottom-color: var(--terracotta);">What can ONLY you provide? What's your proprietary framework, perspective, or process?</div>
+            </div>
+        </div>
+
+        <h3>Before / After Comparison</h3>
+        <div class="two-col">
+            <div class="before-box" style="min-height: 150px;">
+                <div class="before-label">BEFORE</div>
+                <div class="writing-space" style="border: none; padding: 0; min-height: 100px;"></div>
+            </div>
+            <div class="after-box" style="min-height: 150px;">
+                <div class="after-label">AFTER</div>
+                <div class="writing-space" style="border: none; padding: 0; min-height: 100px; background: transparent;"></div>
+            </div>
+        </div>
+
+        <div class="callout callout-tip">
+            <strong>💡 Pro Tip:</strong> Your unique mechanism is what makes you irreplaceable. It could be a proprietary framework, a specific perspective, a process you've developed, or your specific taste. The key is: it can't be replicated by AI because it's yours.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- THE AI-PROOF FRAMEWORK -->
+    <h1>The AI-Proof Framework</h1>
+    <p>These three questions are your filter for any offer, service, or product. Run everything through this lens.</p>
+
+    <div class="framework-question">
+        <div class="framework-number">Question 1</div>
+        <div class="framework-text">Where does my value sit — Execution, Strategy, or Judgment?</div>
+        <p style="font-size: 14px; color: var(--gray-700);">If Execution → Shift to Judgment. The higher up the stack, the more AI-proof you are.</p>
+        <div class="framework-answer"></div>
+    </div>
+
+    <div class="framework-question">
+        <div class="framework-number">Question 2</div>
+        <div class="framework-text">Is my niche specific and slightly uncomfortable?</div>
+        <p style="font-size: 14px; color: var(--gray-700);">If it doesn't make you slightly uncomfortable, it's not specific enough. Generic = invisible.</p>
+        <div class="framework-answer"></div>
+    </div>
+
+    <div class="framework-question">
+        <div class="framework-number">Question 3</div>
+        <div class="framework-text">What's my unique mechanism that AI can't replicate?</div>
+        <p style="font-size: 14px; color: var(--gray-700);">This is your unfair advantage. It could be taste, perspective, experience, or a proprietary framework.</p>
+        <div class="framework-answer"></div>
+    </div>
+
+    <div class="callout callout-success">
+        <strong>✅ The AI-Proof Test:</strong> If you can answer all three questions with specificity and conviction, your offer is built to last. If any question makes you squirm, that's where the work is.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- 90-DAY ROADMAP -->
+    <h1>90-Day Roadmap</h1>
+    <p>Here's your action plan for the next 90 days. Execute systematically.</p>
+
+    <div class="roadmap-grid">
+        <div class="roadmap-month">
+            <div class="roadmap-header">
+                <div class="roadmap-badge">1</div>
+                <div class="roadmap-title">Month 1</div>
+            </div>
+            <ul class="roadmap-checklist">
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Finalize your AI-proof offer using this workbook</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Test with 1-2 pilot clients at discounted rate</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Get explicit feedback: "What made this valuable?"</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Document your unique mechanism</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Update website/landing page</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="roadmap-month">
+            <div class="roadmap-header">
+                <div class="roadmap-badge">2</div>
+                <div class="roadmap-title">Month 2</div>
+            </div>
+            <ul class="roadmap-checklist">
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Raise price to full rate</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Sign 3 new clients with new offer</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Collect testimonials focused on judgment/taste</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Create case study document</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Reach out to warm network</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="roadmap-month">
+            <div class="roadmap-header">
+                <div class="roadmap-badge">3</div>
+                <div class="roadmap-title">Month 3</div>
+            </div>
+            <ul class="roadmap-checklist">
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Evaluate: Is this working?</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>If yes: Raise prices again or launch upsell</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>If no: Iterate offer, try different niche angle</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Consider 1:1 coaching upgrade</span>
+                </li>
+                <li>
+                    <div class="checkbox"></div>
+                    <span>Plan next offer or product</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="callout callout-warning">
+        <strong>⚠️ Important:</strong> Don't skip Month 1. The pilot phase is where you validate your assumptions and refine your offer before going full price. Rushing = learning the wrong lessons.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- NOTES PAGE -->
+    <h1>Notes</h1>
+    <p>Capture your thoughts, ideas, and insights from the workshop here.</p>
+    <div class="notes-section">
+        <div class="writing-space-lines">
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+        </div>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    <div class="notes-section">
+        <div class="writing-space-lines">
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+            <div class="writing-space-line"></div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- POST-WORKSHOP CHECKLIST -->
+    <h1>Post-Workshop Checklist</h1>
+    <p>Complete these action items within 48 hours to maximize your workshop investment.</p>
+
+    <ul class="checklist">
+        <li>
+            <div class="checklist-box"></div>
+            <div class="checklist-content">
+                <div class="checklist-title">Finalize Your AI-Proof Offer</div>
+                <div class="checklist-desc">Take the notes from this workbook and write out your complete, finalized offer. It should include your uncomfortable niche, unique mechanism, and judgment-focused outcome.</div>
+            </div>
+        </li>
+        <li>
+            <div class="checklist-box"></div>
+            <div class="checklist-content">
+                <div class="checklist-title">Validate with One Person</div>
+                <div class="checklist-desc">Share your new offer with one person in your network — ideally someone who might be a potential client or who knows your industry well. Ask: "Does this resonate? Does it sound like something you'd pay for?"</div>
+            </div>
+        </li>
+        <li>
+            <div class="checklist-box"></div>
+            <div class="checklist-content">
+                <div class="checklist-title">Send to Workshop Slack/Community</div>
+                <div class="checklist-desc">Post your redesigned offer in the workshop community. Get feedback and accountability from fellow participants.</div>
+            </div>
+        </li>
+        <li>
+            <div class="checklist-box"></div>
+            <div class="checklist-content">
+                <div class="checklist-title">Schedule Your 1:1 Audit (Optional)</div>
+                <div class="checklist-desc">If you want deeper, personalized feedback on your offer, book a 30-minute 1:1 audit session. Limited availability — book this week to secure your spot.</div>
+            </div>
+        </li>
+        <li>
+            <div class="checklist-box"></div>
+            <div class="checklist-content">
+                <div class="checklist-title">Block Time for Month 1</div>
+                <div class="checklist-desc">Put your 90-day roadmap dates on your calendar now. Treat this as a commitment to yourself and your business.</div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="cta-box">
+        <div class="cta-title">Ready to Go Deeper?</div>
+        <div class="cta-subtitle">Get personalized feedback on your offer with a 1:1 audit.</div>
+        <div style="font-size: 32px; font-weight: 800; margin: 20px 0;">$297</div>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">30-minute 1:1 session • This week only • Limited availability</p>
+        <a href="#" class="cta-button">Book Your 1:1 Audit</a>
+    </div>
+
+    <div class="callout callout-tip">
+        <strong>💡 Final Thought:</strong> The difference between people who thrive in an AI world and those who struggle isn't about learning new tools. It's about repositioning yourself to be valued for judgment, not execution. You've done the work in this workbook. Now execute.
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p><strong>AI-Proof Your Offer</strong> | Workshop Workbook</p>
+        <p>© 2026 Matt Rud. All rights reserved.</p>
+        <p style="margin-top: 12px; font-style: italic;">"Judgment Over Execution"</p>
+    </div>
+
+</body>
+</html>
